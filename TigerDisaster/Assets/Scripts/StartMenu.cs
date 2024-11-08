@@ -34,7 +34,7 @@ public class StartMenu : MonoBehaviour
         LoadGameScene();
     }
 
-    // 이전 기록 이어서 시작
+    //이전 기록 이어서 시작
     void ContinueGame()
     {
         if (PlayerPrefs.HasKey("SaveData"))
@@ -43,10 +43,10 @@ public class StartMenu : MonoBehaviour
         }
     }
 
-    // 게임 씬 로드 함수
+    //게임 씬 로드 함수
     void LoadGameScene()
     {
         // 여기서 "GameScene"은 로드할 게임 씬의 이름입니다.
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("stage");
     }
 }

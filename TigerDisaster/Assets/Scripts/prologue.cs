@@ -8,8 +8,7 @@ public class prologue : MonoBehaviour
     public Text dialogueText;               // 대화창 텍스트
 
     private string[] dialogues = {
-        "으으... 여기가 어디지. 분명 난 호랑이한테 잡혀갔는데...",
-        "얼른 산 아래로 내려가야겠다."
+        "으으... 여기가 어디지. 분명 난 호랑이한테 잡혀갔는데...\n얼른 산 아래로 내려가야겠다."
     };
 
     private int dialogueIndex = 0;
@@ -20,15 +19,7 @@ public class prologue : MonoBehaviour
         DisplayNextDialogue();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && !isTyping)
-        {
-            DisplayNextDialogue();
-        }
-    }
-
-    private void DisplayNextDialogue()
+    public void DisplayNextDialogue()
     {
         if (dialogueIndex < dialogues.Length)
         {
