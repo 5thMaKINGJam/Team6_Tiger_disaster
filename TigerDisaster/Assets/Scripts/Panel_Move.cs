@@ -5,36 +5,55 @@ using UnityEngine;
 public class Panel_Move : MonoBehaviour
 {
     public List<GameObject> panels;
-    public List<int> conditions = new List<int>();
-    public int currentnum = 0;
-   
+    private List<int> conditions = new List<int> { 1, 0, 1, 0 };
+    private int currentnum = 1;
+    public GameObject button;
 
 
-    public void ShowPanel() {
-
-        
-            GameObject paneli = panels[conditions[currentnum]];
-            
-
-            paneli.SetActive(true);
-
-            if (currentnum != 0) {
-                GameObject panel_pre = panels[conditions[currentnum - 1]];
-                panel_pre.SetActive(false);
-               
-            }
-            currentnum++;
-
-            if (currentnum >= conditions.Count) {
-                currentnum = 0;
-
-            }
+    public void ShowPanel()
+    {
 
 
-         TurnManager.setDayAndTurn();
+        GameObject paneli = panels[conditions[currentnum]];
+
+        if (currentnum != 0)
+        {
+            GameObject panel_pre = panels[conditions[currentnum - 1]];
+            panel_pre.SetActive(false);
+
+        }
+
+
+        paneli.SetActive(true);
+        button.SetActive(false);
 
         
-     
-    
+        currentnum++;
+        Invoke("createButton", 2f);
+
+        if (currentnum >= conditions.Count)
+        {
+            currentnum = 0;
+
+
+
+
+
+
+
+        }
+        // TurnManager.setDayAndTurn();
+
+    }
+
+
+
+    public void createButton()
+    {
+        button.SetActive(true);
     }
 }
+
+
+
+
