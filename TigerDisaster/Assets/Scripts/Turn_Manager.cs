@@ -204,6 +204,8 @@ public class Turn_Manager : MonoBehaviour
     public void cameraWalking()
     {
         StartCoroutine(CameraShake());
+        AudioManager.Instance.PlaySFX("PlayerWalking");
+
     }
 
     void AppearImage() {
