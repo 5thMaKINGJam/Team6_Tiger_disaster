@@ -7,9 +7,10 @@ public class EventManager : MonoBehaviour
 {
     public Camera mainCamera;  // 메인 카메라
     private Vector3 originalCameraPos;
-    public SpriteRenderer[] monsters;  // 귀신들
+    public GameObject[] monsters;  // 귀신들
     public Sprite[] monsterSprite;  // 바뀔 귀신의 이미지
     public bool isShaking = false;
+    public bool isInEvent = false;
 
     void Start()
     {
@@ -17,8 +18,8 @@ public class EventManager : MonoBehaviour
     }
 
     void Update() {
-        if(Input.GetMouseButton(0) & !isShaking){
-            StartCoroutine(Event_2());
+        if(Input.GetMouseButton(0) && !isInEvent){
+            StartCoroutine(Event_3());
         }
     }
     public IEnumerator CameraShake()
@@ -36,8 +37,9 @@ public class EventManager : MonoBehaviour
         mainCamera.transform.position = originalCameraPos;
     }
     public IEnumerator Event_1()
-    {
-        monsters[0].sprite = monsterSprite[0];
+    {      
+        SpriteRenderer mstSpriter = monsters[0].GetComponent<SpriteRenderer>();
+        mstSpriter.sprite = monsterSprite[0];
         // 카메라 흔들기
         float shakeDuration = 0.5f;
         float shakeIntensity = 0.2f;
@@ -82,9 +84,10 @@ public class EventManager : MonoBehaviour
         }
 
         // 다리 이미지 교체 후 위치와 회전 초기화
-        monsters[1].sprite = monsterSprite[1];
-        monsters[1].transform.position = originalPosition;
-        monsters[1].transform.rotation = originalRotation;
+        SpriteRenderer mstSpriter = monsters[1].GetComponent<SpriteRenderer>();
+        mstSpriter.sprite = monsterSprite[1];
+        mstSpriter.transform.position = originalPosition;
+        mstSpriter.transform.rotation = originalRotation;
         
         // 카메라 약한 흔들림 시작
         StartCoroutine(CameraShake());
@@ -96,5 +99,58 @@ public class EventManager : MonoBehaviour
             monsters[1].transform.position += Vector3.down * fallSpeed * Time.deltaTime;
             yield return null;
         }
+    }
+
+    public IEnumerator Event_3(){
+        isInEvent = true;
+        monsters[2].SetActive(true);
+        yield return new WaitForSeconds(2f);
+        monsters[2].SetActive(false);
+        StartCoroutine(Event_4());
+    }
+    public IEnumerator Event_4(){
+        monsters[3].SetActive(true);
+        float slideDuration = 2.0f;  // 이동 시간
+        float targetXPosition = -6.7f;  // 목표 위치
+
+        Vector3 startPosition = monsters[3].transform.position;
+        Vector3 endPosition = new Vector3(targetXPosition, startPosition.y, startPosition.z);  // 목표 X 위치만 설정
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < slideDuration)
+        {
+            // 정확한 비율로 이동하도록 보정
+            float t = Mathf.Clamp01(elapsedTime / slideDuration);
+            monsters[3].transform.position = Vector3.Lerp(startPosition, endPosition, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 마지막 위치 고정
+        monsters[3].transform.position = endPosition;
+        isInEvent = false;
+    }
+
+    public IEnumerator Event_13(){
+        Vector3 startPosition = new Vector3(0, 7.35f, 0);   // 처음 위치 (씬 밖)
+        Vector3 endPosition = new Vector3(0, 2.65f, 0);     // 최종 위치 (씬 안)
+        float duration = 5.0f;                              // 이동 시간 (조정 가능)
+        float elapsedTime = 0f;
+
+        // 초기 위치 설정
+        monsters[12].transform.position = startPosition;
+
+        // 지정된 시간 동안 천천히 이동
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;  // 시간 비율
+            monsters[12].transform.position = Vector3.Lerp(startPosition, endPosition, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 마지막 위치 고정
+        monsters[12].transform.position = endPosition;
     }
 }
