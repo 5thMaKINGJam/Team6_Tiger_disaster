@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using System;
 public static class SaveManager
 {
+    public static void initDayAndTurn(){
+        PlayerPrefs.SetInt("CurrentDay", 0);
+        PlayerPrefs.SetInt("CurrentTurn", 0);
+    }
     public static void setDayAndTurn(int currentDay, int currentTurn)
     {
         // PlayerPrefs에 현재 일차와 턴 저장

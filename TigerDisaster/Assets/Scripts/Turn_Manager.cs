@@ -58,10 +58,14 @@ public class Turn_Manager : MonoBehaviour
             SaveManager.setDayAndTurn(currentday, currentnum);
         }
 
+        
+
 
     }
 
-
+    void Start(){
+        SaveManager.initDayAndTurn();
+    }
     public void ShowPanel()
     {
     
