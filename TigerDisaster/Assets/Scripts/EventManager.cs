@@ -455,7 +455,7 @@ public class EventManager : MonoBehaviour
     public void Event2_16()
     {
         Debug.Log("이벤트 2-16");
-        
+        AudioManager.Instance.PlaySFX("faceAppear");
         Face.SetActive(true);
     }
 
