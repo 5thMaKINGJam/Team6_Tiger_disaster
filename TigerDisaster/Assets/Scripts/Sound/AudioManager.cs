@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,7 +26,35 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayMusic("Epilogue");
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName == "startMenu")
+        {
+            PlayMusic("Start");  // "Start" 씬일 경우 "Start" 음악 재생
+        }
+        else if (sceneName == "Stage")
+        {
+            PlayBGMforMainGame();
+        }
+    }
+
+    public void PlayBGMforMainGame()
+    {
+        Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
+        int day = dayAndTurn.Item1;
+
+        if (day == 0 || day == 1)
+        {
+            PlayMusic("1bgm"); // 1BGM을 재생
+        }
+        else if (day == 2)
+        {
+            PlayMusic("2bgm"); // 1BGM을 재생
+        }
+        else if (day == 3)
+        {
+            PlayMusic("3bgm"); // 1BGM을 재생
+        }
     }
 
     public void FadeOutMusic(float fadeDuration)
