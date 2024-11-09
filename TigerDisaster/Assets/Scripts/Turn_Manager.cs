@@ -373,6 +373,18 @@ public class Turn_Manager : MonoBehaviour
         else if (day == 3 && turn == 1){
             eventManager.Event3_1();
         }
+        else if (day == 3 && turn == 2)
+        {
+            eventManager.Event3_2();
+        }
+        else if (day == 3 && turn == 3)
+        {
+            eventManager.Event3_3();
+        }
+        else if (day == 3 && turn == 4)
+        {
+            eventManager.Event3_4();
+        }
 
         else if (day == 3 && turn == 5){
             sceneMove.ChangeScene();

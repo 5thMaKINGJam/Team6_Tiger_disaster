@@ -34,6 +34,11 @@ public class EventManager : MonoBehaviour
     public GameObject neckFace;
     public GameObject Face;
 
+    public GameObject blackPanel;
+    public GameObject lastFace;
+    public GameObject[] hands;
+
+
     public GameObject[] footPrint;
 
     public TMP_Text dialogueText;  // TextMeshPro 텍스트 컴포넌트
@@ -474,7 +479,65 @@ public class EventManager : MonoBehaviour
     }
 
     public void Event3_1(){
-        //이상한 손이 스믈스믈 나옴.         
+        if(mySequence != null) mySequence.Kill();
+        Vector3 targetPos = new Vector3(6, -3, 0);
+
+        mySequence = DOTween.Sequence();
+        mySequence.OnStart(() => {
+            lastFace.SetActive(true);
+            AudioManager.Instance.PlaySFX("DeerShock");
+            AudioManager.Instance.PlaySFX("frontBreathe");
+        }).Append(lastFace.transform.DOMove(targetPos, 0.3f)).Append(lastFace.transform.DOPunchPosition(new Vector3(0, 1, 0), 4, 10, 1, false))
+        .OnComplete(() => {
+        });
+
+        mySequence.Restart(); // 시퀀스를 다시 시작
     }
+    //-10.89/ 6.27 -> 최종타겟
+
+    public void Event3_2()
+    {
+        if (mySequence != null) mySequence.Kill();
+
+        mySequence = DOTween.Sequence();
+        mySequence
+            .Append(lastFace.transform.DOMove(new Vector3(6.1f, -5, 0), 2f))
+            .Join(blackPanel.GetComponent<Image>().DOFade(0.33f, 2f))
+            .Join(lastFace.transform.DOScale(2,2))
+        .OnComplete(() => {
+        });
+
+        mySequence.Restart(); // 시퀀스를 다시 시작
+    }
+
+    public void Event3_3()
+    {
+        if (mySequence != null) mySequence.Kill();
+
+        mySequence = DOTween.Sequence();
+        mySequence
+            .Append(lastFace.transform.DOMove(new Vector3(6.2f, -8, 0), 2f))
+            .Join(blackPanel.GetComponent<Image>().DOFade(0.66f, 2f))
+            .Join(lastFace.transform.DOScale(3, 2))
+        .OnComplete(() => {
+        });
+
+        mySequence.Restart(); // 시퀀스를 다시 시작
+    }
+    public void Event3_4()
+    {
+        if (mySequence != null) mySequence.Kill();
+
+        mySequence = DOTween.Sequence();
+        mySequence
+            .Append(lastFace.transform.DOMove(new Vector3(6.27f, -10.89f, 0), 2f))
+            .Join(blackPanel.GetComponent<Image>().DOFade(0.80f, 2f))
+            .Join(lastFace.transform.DOScale(4, 2))
+        .OnComplete(() => {
+        });
+
+        mySequence.Restart(); // 시퀀스를 다시 시작
+    }
+
 
 }
