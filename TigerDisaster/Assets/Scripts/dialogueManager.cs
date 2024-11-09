@@ -19,12 +19,12 @@ public class dialogueManager : MonoBehaviour
     private List<string> currentDialogue;    // 현재 선택된 대화 리스트
     private int dialogueIndex = 0;           // 현재 대화 인덱스
     private bool isTyping = false;           // 텍스트 타이핑 중인지 여부
-
+/*
     private void Start()
     {
         // 초기 시작 시 대화 셋 2를 표시
-        SelectDialogue(5);
-        DisplayCurrentDialogue();
+        // SelectDialogue(5);
+        // DisplayCurrentDialogue();
 
         // 버튼 클릭 시 다음 대화로 넘어가도록 이벤트 추가
         // nextDialogueButton.onClick.AddListener(OnNextDialogueButtonClicked);
@@ -94,5 +94,5 @@ public class dialogueManager : MonoBehaviour
         dialogueText.text = "";              // 대화창 내용 초기화
         backgroundBox.SetActive(false);      // 대사 배경 상자 비활성화
         dialogueIndex = 0;                   // 대화 인덱스 초기화
-    }
+    }*/
 }

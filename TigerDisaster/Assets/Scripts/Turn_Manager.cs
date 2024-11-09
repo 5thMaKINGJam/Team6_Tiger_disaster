@@ -17,7 +17,7 @@ public class Turn_Manager : MonoBehaviour
     private SpriteRenderer bgSpriter;
     public Sprite[] BackGroundSprite;
     public Image circularImage;
-    private float duration = 0.5f;  // 슬라이더가 1에서 0으로 줄어드는 시간
+    private float duration = 0f;  // 슬라이더가 1에서 0으로 줄어드는 시간
     public GameObject[] Ghosts;
 
     
@@ -156,12 +156,12 @@ public class Turn_Manager : MonoBehaviour
         circularImageObject.SetActive(true);
         circularImage.fillAmount = 1f;
 
-        StopCoroutine(FillAmountLerp());
+        // StopCoroutine(FillAmountLerp());
         StartCoroutine(FillAmountLerp());
 
         button.enabled = false;
 
-        Invoke("createButton", 1f);
+        Invoke("createButton", duration);
 
         
     }
@@ -218,7 +218,7 @@ public class Turn_Manager : MonoBehaviour
             Debug.Log("HI");
         }
 
-         if (day == 0 && turn == 7)
+        if (day == 0 && turn == 7)
         {
             rt.localScale = new Vector3(2f, 2f, 1f);
         }
@@ -230,15 +230,77 @@ public class Turn_Manager : MonoBehaviour
 
         if (day == 0 && turn == 9)
         {
-            eventManager.Event0_9();
+            eventManager.Event0_10();
         }
 
         if (day == 0 && turn == 10)
         {
-            eventManager.StartCoroutine(eventManager.Event0_10());
+            eventManager.StartCoroutine(eventManager.Event0_11());
         }
 
-       
+        if (day == 1 && turn == 1)
+        {
+            eventManager.StartCoroutine(eventManager.Event1_2());
+        }
+
+        if (day == 1 && turn == 5)
+        {
+            eventManager.StartCoroutine(eventManager.Event1_6());
+        }
+
+        if (day == 1 && turn == 8)
+        {
+            eventManager.Event1_9();
+        }
+
+        if (day == 1 && turn == 9)
+        {
+            eventManager.Event1_10();
+        }
+
+        if (day == 1 && turn == 10)
+        {
+            eventManager.Event1_11();
+        }
+
+        if (day == 1 && turn == 11)
+        {
+            eventManager.Event1_12();
+        }
+
+        if (day == 1 && turn == 12)
+        {
+            eventManager.Event1_13();
+        }
+
+        if (day == 1 && turn == 13)
+        {
+            eventManager.Event1_14();
+        }
+
+        if (day == 2 && turn == 6){
+            eventManager.StartCoroutine(eventManager.Event2_7());
+        }
+
+        if (day == 2 && turn == 7){
+            eventManager.StartCoroutine(eventManager.Event2_8());
+        }
+
+        if (day == 2 && turn == 11){
+            eventManager.Event2_12();
+        }
+
+        if (day == 2 && turn == 12){
+            eventManager.Event2_13();
+        }
+
+        if (day == 2 && turn == 13){
+            eventManager.StartCoroutine(eventManager.Event2_14());
+        }
+
+        if (day == 2 && turn == 16){
+            eventManager.Event2_17();
+        }
 
 
 
