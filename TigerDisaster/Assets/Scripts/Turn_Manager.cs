@@ -7,11 +7,12 @@ using System;
 
 public class Turn_Manager : MonoBehaviour
 {
-    private int currentnum = 0;
-    private int currentday = 0;
+  
     public Button button;
     public GameObject circularImageObject;
     public GameObject bg;
+    public GameObject Jang;
+    public GameObject RedJang;
     public GameObject RedDoor0;
     public GameObject RedDoor1;
     private SpriteRenderer bgSpriter;
@@ -21,6 +22,10 @@ public class Turn_Manager : MonoBehaviour
     public GameObject[] Ghosts;
 
     private SceneMove sceneMove;
+    private int currentnum = 1;
+    private int currentday = 0;
+
+
     private EventManager eventManager;
 
     // public List<GameObject> panels;
@@ -44,15 +49,23 @@ public class Turn_Manager : MonoBehaviour
         bgSpriter = bg.GetComponent<SpriteRenderer>();
         camera = Camera.main;
         originalPosition = camera.transform.position;
+        Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
+        currentday = dayAndTurn.Item1;
+        currentnum = dayAndTurn.Item2;
+
+        if (currentday == 0 && currentnum == 1)
+        {
+            SaveManager.setDayAndTurn(currentday, currentnum);
+        }
+
+
     }
-
-
-
-
 
 
     public void ShowPanel()
     {
+    
+
         AppearImage();
 
         SaveManager.setDayAndTurn(currentday, currentnum);
@@ -71,30 +84,49 @@ public class Turn_Manager : MonoBehaviour
         else if (currentday == 3) {
             currentDayList = day3;
         }
-        else
-        {
-            Debug.LogError("Invalid currentday value.");
-            return;
-        }
+        // else
+        // {
+        //     Debug.LogError("Invalid currentday value.");
+        //     return;
+        // }
 
         if (currentnum == 0 && currentDayList != day0)
         {
             RedDoor1.SetActive(false);
             RedDoor0.SetActive(true);
+            Jang.SetActive(false);
+            RedJang.SetActive(false);
+
+
+            
+
         }
         else if (currentDayList == day0 && currentnum == 1) {
             RedDoor1.SetActive(false);
             RedDoor0.SetActive(true);
+            Jang.SetActive(false);
+
         }
-        else if (currentnum == currentDayList.Count - 1)
+        else if (currentnum == currentDayList.Count - 1 || (currentnum == 0 && currentDayList == day0))
         {
             RedDoor0.SetActive(false);
             RedDoor1.SetActive(true);
+
+            if (currentDayList == day1 || currentDayList == day2 || currentDayList == day3)
+            {
+                RedJang.SetActive(true);
+            }
+            else
+            {
+                Jang.SetActive(true);
+            }
         }
         else
         {
             RedDoor0.SetActive(false);
             RedDoor1.SetActive(false);
+            Jang.SetActive(false);
+            RedJang.SetActive(false);
         }
 
         if (currentDayList[currentnum] == 0)  //�⺻
@@ -207,11 +239,11 @@ public class Turn_Manager : MonoBehaviour
 
         for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
         {
-            // ���Ʒ��θ� ��鸮���� Y������ �̵�
-            float offsetY = -Mathf.Sin(elapsed * 15) * shakeIntensity;  // �ֱ⸦ ���� ������ ���Ʒ��� �̵�
+            
+            float offsetY = -Mathf.Sin(elapsed * 15) * shakeIntensity;  
             camera.transform.position = originalPosition + new Vector3(0, offsetY, 0);
 
-            yield return null; // ���� �����ӱ��� ���
+            yield return null; 
         }
 
         // ��鸲�� ���� �� ī�޶� ��ġ�� ���� ��ġ�� ����
@@ -347,6 +379,8 @@ public class Turn_Manager : MonoBehaviour
         if (day == 3 && turn == 5){
             sceneMove.ChangeScene();
         }
+
+        sceneMove.ChangeScene();
 
 
 

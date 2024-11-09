@@ -15,9 +15,17 @@ public static class SaveManager
     }
 
     public static Tuple<int, int> getDayAndTurn()
-    {   
-        int day = PlayerPrefs.GetInt("CurrentDay");
-        int turn = PlayerPrefs.GetInt("CurrentTurn");
+    {
+        // PlayerPrefs에 값이 없으면 기본값 (0, 1)을 반환
+        int day = PlayerPrefs.HasKey("CurrentDay") ? PlayerPrefs.GetInt("CurrentDay") : 0;
+        int turn = PlayerPrefs.HasKey("CurrentTurn") ? PlayerPrefs.GetInt("CurrentTurn") : 1;
+
         return Tuple.Create(day, turn);
+
+        //int day = PlayerPrefs.GetInt("CurrentDay");
+        //int turn = PlayerPrefs.GetInt("CurrentTurn");
+
+        Debug.Log(day +"and"+ turn);
+        //return Tuple.Create(day, turn);
     }
 }
