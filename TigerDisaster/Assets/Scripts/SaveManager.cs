@@ -6,8 +6,8 @@ using System;
 public static class SaveManager
 {
     public static void initDayAndTurn(){
-        PlayerPrefs.SetInt("CurrentDay", 0);
-        PlayerPrefs.SetInt("CurrentTurn", 1);
+        setDayAndTurn(0, 1);
+        PlayerPrefs.SetInt("SaveData", 0);
     }
     public static void setDayAndTurn(int currentDay, int currentTurn)
     {
@@ -17,13 +17,17 @@ public static class SaveManager
         PlayerPrefs.SetInt("CurrentTurn", currentTurn);
         
     }
-
     public static Tuple<int, int> getDayAndTurn()
     {
-        // PlayerPrefs에 값이 없으면 기본값 (0, 1)을 반환
         int day = PlayerPrefs.GetInt("CurrentDay");
         int turn = PlayerPrefs.GetInt("CurrentTurn");
 
         return Tuple.Create(day, turn);
+    }
+    public static void saveData(){
+        int currentDay = PlayerPrefs.GetInt("CurrentDay");
+        int currentTurn = PlayerPrefs.GetInt("CurrentTurn");
+        SaveManager.setDayAndTurn(currentDay, currentTurn);
+        PlayerPrefs.SetInt("SaveData", 1);
     }
 }
