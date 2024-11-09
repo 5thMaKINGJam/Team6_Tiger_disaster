@@ -18,7 +18,7 @@ public class Turn_Manager : MonoBehaviour
     private SpriteRenderer bgSpriter;
     public Sprite[] BackGroundSprite;
     public Image circularImage;
-    private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
+    private float duration = 1f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
 
     private SceneMove sceneMove;
@@ -38,7 +38,7 @@ public class Turn_Manager : MonoBehaviour
     private Camera camera;
 
 
-
+    private Vector3 originalPosition;
 
 
     void Awake()
@@ -48,6 +48,7 @@ public class Turn_Manager : MonoBehaviour
         sceneMove = FindObjectOfType<SceneMove>();
         bgSpriter = bg.GetComponent<SpriteRenderer>();
         camera = Camera.main;
+        originalPosition = camera.transform.position;
         Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
         currentday = dayAndTurn.Item1;
         currentnum = dayAndTurn.Item2;
@@ -234,7 +235,7 @@ public class Turn_Manager : MonoBehaviour
         float shakeDuration = 0.3f;   // ��鸲 ���� �ð�
         float shakeIntensity = 0.3f;  // ��鸲 ����
 
-        Vector3 originalPosition = camera.transform.position; // ī�޶� ���� ��ġ ����
+         // ī�޶� ���� ��ġ ����
 
         for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
         {
@@ -297,12 +298,11 @@ public class Turn_Manager : MonoBehaviour
             eventManager.StartCoroutine(eventManager.Event0_11());
         }
 
-        if (day == 1 && turn == 0)
-        {
-            //AudioManager.Instance.FadeOutMusic(2f);
+        if (day == 0 && turn == 14){
+            eventManager.Event0_15();
         }
 
-            if (day == 1 && turn == 1)
+        if (day == 1 && turn == 1)
         {
             eventManager.StartCoroutine(eventManager.Event1_2());
             AudioManager.Instance.PlaySFX("NeckGhostHorror");
@@ -366,6 +366,14 @@ public class Turn_Manager : MonoBehaviour
 
         if (day == 2 && turn == 16){
             eventManager.Event2_17();
+        }
+
+        if ( day == 2 && turn == 17){
+            AudioManager.Instance.PlaySFX("Scream");
+        }
+
+        if (day == 3 && turn == 0){
+            eventManager.Event3_1();
         }
 
         if (day == 3 && turn == 5){
