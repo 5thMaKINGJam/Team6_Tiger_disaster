@@ -19,6 +19,7 @@ public class Turn_Manager : MonoBehaviour
     public Image circularImage;
     private float duration = 0.5f;  // 슬라이더가 1에서 0으로 줄어드는 시간
     public GameObject[] Ghosts;
+
     
     private EventManager eventManager;
 
