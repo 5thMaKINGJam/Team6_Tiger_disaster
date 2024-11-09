@@ -811,7 +811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &542478530
 RectTransform:
   m_ObjectHideFlags: 0
@@ -901,6 +901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   btn: {fileID: 1074712697}
+  Dear: {fileID: 0}
   wallMonseter1: {fileID: 793136035}
   wallMonseter2: {fileID: 190333895}
   wall: {fileID: 1934521586}
