@@ -235,11 +235,12 @@ public class Turn_Manager : MonoBehaviour
         int day = dayAndTurn.Item1;
         int turn = dayAndTurn.Item2;
 
+
+
         if (day == 0  && turn == 6)
         {
             rt.localScale = new Vector3(1f, 1f, 1f);
             Ghosts[0].SetActive(true);
-            Debug.Log("HI");
         }
 
         if (day == 0 && turn == 7)
@@ -255,6 +256,7 @@ public class Turn_Manager : MonoBehaviour
         if (day == 0 && turn == 9)
         {
             eventManager.Event0_10();
+            AudioManager.Instance.PlaySFX("WallGhostAppear");
         }
 
         if (day == 0 && turn == 10)
@@ -262,9 +264,15 @@ public class Turn_Manager : MonoBehaviour
             eventManager.StartCoroutine(eventManager.Event0_11());
         }
 
-        if (day == 1 && turn == 1)
+        if (day == 1 && turn == 0)
+        {
+            //AudioManager.Instance.FadeOutMusic(2f);
+        }
+
+            if (day == 1 && turn == 1)
         {
             eventManager.StartCoroutine(eventManager.Event1_2());
+            AudioManager.Instance.PlaySFX("NeckGhostHorror");
         }
 
         if (day == 1 && turn == 5)
@@ -302,6 +310,7 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event1_14();
         }
 
+
         if (day == 2 && turn == 6){
             eventManager.StartCoroutine(eventManager.Event2_7());
         }
@@ -326,11 +335,8 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event2_17();
         }
 
-
-
-
     }
-    
+
 }
 
 
