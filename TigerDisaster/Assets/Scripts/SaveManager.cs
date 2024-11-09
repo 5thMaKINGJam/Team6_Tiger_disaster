@@ -18,6 +18,8 @@ public static class SaveManager
     {   
         int day = PlayerPrefs.GetInt("CurrentDay");
         int turn = PlayerPrefs.GetInt("CurrentTurn");
+
+      
         return Tuple.Create(day, turn);
     }
 }

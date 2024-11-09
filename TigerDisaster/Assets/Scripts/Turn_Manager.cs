@@ -42,6 +42,9 @@ public class Turn_Manager : MonoBehaviour
         eventManager = FindObjectOfType<EventManager>();
         bgSpriter = bg.GetComponent<SpriteRenderer>();
         camera = Camera.main;
+        Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
+        currentday = dayAndTurn.Item1;
+        currentnum = dayAndTurn.Item2;
     }
 
 
@@ -84,10 +87,10 @@ public class Turn_Manager : MonoBehaviour
             RedDoor1.SetActive(false);
             RedDoor0.SetActive(true);
         }
-        else if (currentnum == currentDayList.Count - 1)
+        else if (currentnum == currentDayList.Count - 1 || (currentnum == 0 && currentDayList == day0))
         {
             RedDoor0.SetActive(false);
-            RedDoor1.SetActive(true);
+            RedDoor1.SetActive(true); 
         }
         else
         {
@@ -205,11 +208,11 @@ public class Turn_Manager : MonoBehaviour
 
         for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
         {
-            // ���Ʒ��θ� ��鸮���� Y������ �̵�
-            float offsetY = -Mathf.Sin(elapsed * 15) * shakeIntensity;  // �ֱ⸦ ���� ������ ���Ʒ��� �̵�
+            
+            float offsetY = -Mathf.Sin(elapsed * 15) * shakeIntensity;  
             camera.transform.position = originalPosition + new Vector3(0, offsetY, 0);
 
-            yield return null; // ���� �����ӱ��� ���
+            yield return null; 
         }
 
         // ��鸲�� ���� �� ī�޶� ��ġ�� ���� ��ġ�� ����
