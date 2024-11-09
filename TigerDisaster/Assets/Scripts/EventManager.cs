@@ -239,6 +239,8 @@ public class EventManager : MonoBehaviour
         Debug.Log("이벤트 1-10");
         maskMonseter1.SetActive(false);
         maskMonseter2.SetActive(true);
+        AudioManager.Instance.PlaySFX("Shock1");
+
     }
 
     //탈귀신 쫒아옴
@@ -262,7 +264,7 @@ public class EventManager : MonoBehaviour
         //철퍽 철퍽 철퍽 재생
         AudioManager.Instance.PlaySFX("TalGhostWalking");
         Invoke("PlaySound", 0.2f);
-        Invoke("PlaySound", 0.2f);
+        Invoke("PlaySound", 0.4f);
 
 
     }
@@ -378,6 +380,10 @@ public class EventManager : MonoBehaviour
         for (int i = 0; i < message.Length; i++)
         {
             dialogueText.text += message[i];  // 한 글자씩 추가
+            if (message[i] != 0)
+            {
+                AudioManager.Instance.PlayMusic("WordImpact");
+            }
             yield return new WaitForSeconds(typingSpeed);  // 지연 시간 설정
         }
     }
