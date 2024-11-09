@@ -7,6 +7,8 @@ using DG.Tweening;
 
 public class EventManager : MonoBehaviour
 {
+    private SceneMove sceneMove;
+
     public Camera mainCamera;  // 메인 카메라
     public Button btn;
     private dialogueManager dialogueManager;
@@ -57,6 +59,7 @@ public class EventManager : MonoBehaviour
     {
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
+        sceneMove = FindObjectOfType<SceneMove>();
     }
 
     void Update() 
@@ -145,6 +148,7 @@ public class EventManager : MonoBehaviour
         .AppendCallback(() => { footPrint[1].SetActive(true); AudioManager.Instance.PlaySFX("TalGhostWalking"); }) // 객체 활성화
         .AppendInterval(1f)
         .AppendCallback(() => { footPrint[2].SetActive(true); AudioManager.Instance.PlaySFX("TalGhostWalking"); }) // 객체 활성화
+        .AppendInterval(1f)
         .OnComplete(() => {
             btn.interactable = true;
         });
@@ -484,11 +488,13 @@ public class EventManager : MonoBehaviour
 
         mySequence = DOTween.Sequence();
         mySequence.OnStart(() => {
+            btn.interactable = false;
             lastFace.SetActive(true);
             AudioManager.Instance.PlaySFX("DeerShock");
             AudioManager.Instance.PlaySFX("frontBreathe");
         }).Append(lastFace.transform.DOMove(targetPos, 0.3f)).Append(lastFace.transform.DOPunchPosition(new Vector3(0, 1, 0), 4, 10, 1, false))
         .OnComplete(() => {
+            Event3_2();
         });
 
         mySequence.Restart(); // 시퀀스를 다시 시작
@@ -505,6 +511,7 @@ public class EventManager : MonoBehaviour
             .Join(blackPanel.GetComponent<Image>().DOFade(0.33f, 2f))
             .Join(lastFace.transform.DOScale(2,2))
         .OnComplete(() => {
+            Event3_3();
         });
 
         mySequence.Restart(); // 시퀀스를 다시 시작
@@ -520,6 +527,7 @@ public class EventManager : MonoBehaviour
             .Join(blackPanel.GetComponent<Image>().DOFade(0.66f, 2f))
             .Join(lastFace.transform.DOScale(3, 2))
         .OnComplete(() => {
+            Event3_4();
         });
 
         mySequence.Restart(); // 시퀀스를 다시 시작
@@ -534,6 +542,7 @@ public class EventManager : MonoBehaviour
             .Join(blackPanel.GetComponent<Image>().DOFade(0.80f, 2f))
             .Join(lastFace.transform.DOScale(4, 2))
         .OnComplete(() => {
+            sceneMove.ChangeScene();
         });
 
         mySequence.Restart(); // 시퀀스를 다시 시작

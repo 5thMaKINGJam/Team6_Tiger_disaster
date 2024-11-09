@@ -17,10 +17,9 @@ public class Turn_Manager : MonoBehaviour
     private SpriteRenderer bgSpriter;
     public Sprite[] BackGroundSprite;
     public Image circularImage;
-    private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
+    private float duration = 1f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
     RectTransform rt;
-    private SceneMove sceneMove;
     private int currentnum = 1;
     private int currentday = 0;
 
@@ -36,12 +35,14 @@ public class Turn_Manager : MonoBehaviour
     private Camera camera;
     private Vector3 originalPosition;
 
+    float shakeDuration = 0.3f;   // ��鸲 ���� �ð�
+    float shakeIntensity = 0.3f;  // ��鸲 ����
+
     Tuple<int, int> dayAndTurn;
 
     void Awake()
     {
         eventManager = FindObjectOfType<EventManager>();
-        sceneMove = FindObjectOfType<SceneMove>();
         bgSpriter = bg.GetComponent<SpriteRenderer>();
         camera = Camera.main;
         originalPosition = camera.transform.position;
@@ -211,8 +212,6 @@ public class Turn_Manager : MonoBehaviour
 
     public IEnumerator CameraShake()
     {
-        float shakeDuration = 0.3f;   // ��鸲 ���� �ð�
-        float shakeIntensity = 0.3f;  // ��鸲 ����
 
          // ī�޶� ���� ��ġ ����
 
@@ -369,25 +368,9 @@ public class Turn_Manager : MonoBehaviour
             AudioManager.Instance.PlaySFX("Scream");
             AudioManager.Instance.PlayMusic("3bgm");
         }
-
-        else if (day == 3 && turn == 1){
-            eventManager.Event3_1();
-        }
-        else if (day == 3 && turn == 2)
-        {
-            eventManager.Event3_2();
-        }
-        else if (day == 3 && turn == 3)
-        {
-            eventManager.Event3_3();
-        }
         else if (day == 3 && turn == 4)
         {
-            eventManager.Event3_4();
-        }
-
-        else if (day == 3 && turn == 5){
-            sceneMove.ChangeScene();
+            eventManager.Event3_1();
         }
     }
     
