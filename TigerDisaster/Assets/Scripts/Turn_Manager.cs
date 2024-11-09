@@ -11,31 +11,37 @@ public class Turn_Manager : MonoBehaviour
     private int currentday = 0;
     public Button button;
     public GameObject circularImageObject;
+    public GameObject bg;
+    private SpriteRenderer bgSpriter;
+    public Sprite[] BackGroundSprite;
     public Image circularImage;
-    public float duration = 1f;  // 슬라이더가 1에서 0으로 줄어드는 시간
+    private float duration = 1f;  // 슬라이더가 1에서 0으로 줄어드는 시간
     public GameObject[] Ghosts;
+    
     private EventManager eventManager;
 
-    public List<GameObject> panels;
-    private List<int> day0 = new List<int> { 2, 0, 1, 0, 1, 0, 1, 0, 1, 4, 5, 0, 1, 0, 3 };
-    private List<int> day1 = new List<int> { 2, 0, 1,0,1,0,1,0 ,1,4,5,0,1,0,3};
+   // public List<GameObject> panels;
+
+    private List<int> day0 = new List<int> { 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0 };
+    private List<int> day1 = new List<int> { 0, 0, 0,0,0,0,0,0 ,0,1,2,0,1,0,0};
     private List<int> day2 = new List<int> { 1, 0, 1 };
 
 
 
-    void Start()
+    
+
+
+    void Awake()
     {
 
-    eventManager = FindObjectOfType<EventManager>();
-        
+        eventManager = FindObjectOfType<EventManager>();
+        bgSpriter = bg.GetComponent<SpriteRenderer>();
+        //get오늘 turn 
+
+
     }
 
 
-
-    void Update()
-    {
-        AppearImage();
-    }
 
 
 
@@ -45,40 +51,62 @@ public class Turn_Manager : MonoBehaviour
 
     public void ShowPanel()
     {
-        List<int> currentDayList = day1;  // 기본적으로 day1로 시작
-        
-        if (currentnum == 0)
-        {
-            GameObject panel_pre = panels[currentDayList[currentDayList.Count - 1]];
-            panel_pre.SetActive(false);
-        }
 
-        else
-        {
-            GameObject panel_pre = panels[day1[currentnum - 1]];
-            panel_pre.SetActive(false);
+        AppearImage();
 
-        }
-        
+
+        List<int> currentDayList = day0;  // 기본적으로 day0로 시작
+
+
 
 
         if (currentnum >= day0.Count)
         {
             currentDayList = day1;  // day1이 끝나면 day2로
-            currentnum = -1;
+            currentnum = 0;
             currentday = 1;
         }
 
         if (currentnum >= day1.Count)
         {
             currentDayList = day2;  // day2가 끝나면 day3으로
-            currentnum = -1;
+            currentnum = 0;
             currentday = 2;
         }
-        currentnum++;
+
+        if (currentnum == 0 || currentnum == currentDayList.Count - 1)
+        {
+            bgSpriter.sprite = BackGroundSprite[4];
+        }
+
+
+
+
+
+
         // 해당 day의 패널을 가져옴
-        GameObject paneli = panels[currentDayList[currentnum]];
-        
+        if (currentDayList[currentnum] == 0) {
+
+            if (bgSpriter.sprite == BackGroundSprite[0])
+            {
+
+                bgSpriter.sprite = BackGroundSprite[1];
+            }
+            else {
+                bgSpriter.sprite = BackGroundSprite[0];
+            }
+
+        }
+        else if (currentDayList[currentnum] == 1) {
+            bgSpriter.sprite = BackGroundSprite[2];
+        }
+
+        else if (currentDayList[currentnum] == 2)
+        {
+            bgSpriter.sprite = BackGroundSprite[3];
+        }
+        currentnum++;
+
 
 
 
@@ -87,7 +115,7 @@ public class Turn_Manager : MonoBehaviour
 
         StopCoroutine(FillAmountLerp());
         StartCoroutine(FillAmountLerp());
-        paneli.SetActive(true);
+       
         button.enabled = false;
 
 
