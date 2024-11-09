@@ -20,7 +20,7 @@ public class Turn_Manager : MonoBehaviour
     public Image circularImage;
     private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
-
+    RectTransform rt;
     private SceneMove sceneMove;
     private int currentnum = 1;
     private int currentday = 0;
@@ -34,10 +34,7 @@ public class Turn_Manager : MonoBehaviour
     private List<int> day1 = new List<int> { 0, 0, 0,0,0,0,0,0 ,0,1,2,0,0,0,0};
     private List<int> day2 = new List<int> { 6, 6, 4,5,6,6,6,3,6,6,4,5,6,6,6,6,6,6,6 };
     private List<int> day3 = new List<int> { 7,7,7,7,7,7 };
-
     private Camera camera;
-
-
     private Vector3 originalPosition;
 
     Tuple<int, int> dayAndTurn;
@@ -57,11 +54,11 @@ public class Turn_Manager : MonoBehaviour
         dayAndTurn = SaveManager.getDayAndTurn();
         currentday = dayAndTurn.Item1;
         currentnum = dayAndTurn.Item2;
+
+        rt = Ghosts[0].GetComponent<RectTransform>();
     }
     public void ShowPanel()
     {
-    
-
         AppearImage();
 
         SaveManager.setDayAndTurn(currentday, currentnum);
@@ -243,17 +240,12 @@ public class Turn_Manager : MonoBehaviour
 
     void AppearImage() {
 
-        RectTransform rt = Ghosts[0].GetComponent<RectTransform>();
-
-        // Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
-
         int day = currentday;
         int turn = currentnum;
 
         if (day == 0 && turn == 3) {
             eventManager.Event0_3();
         }
-
 
         if (day == 0  && turn == 7)
         {
