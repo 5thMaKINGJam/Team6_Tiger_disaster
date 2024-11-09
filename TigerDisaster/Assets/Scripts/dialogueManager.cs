@@ -27,7 +27,7 @@ public class dialogueManager : MonoBehaviour
         DisplayCurrentDialogue();
 
         // 버튼 클릭 시 다음 대화로 넘어가도록 이벤트 추가
-        nextDialogueButton.onClick.AddListener(OnNextDialogueButtonClicked);
+        // nextDialogueButton.onClick.AddListener(OnNextDialogueButtonClicked);
     }
 
     // 현재 대화 출력 메서드 - 인덱스를 증가시키지 않고 현재 대화만 표시
@@ -48,7 +48,7 @@ public class dialogueManager : MonoBehaviour
     }
 
     // 다음 대화 버튼 클릭 시 호출되는 메서드
-    private void OnNextDialogueButtonClicked()
+    public void OnNextDialogueButtonClicked()
     {
         if (!isTyping)                       // 타이핑 중이 아닐 때만 인덱스를 증가
         {
