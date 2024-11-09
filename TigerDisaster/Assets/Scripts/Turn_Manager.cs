@@ -352,7 +352,6 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event1_14();
         }
 
-
         if (day == 2 && turn == 6){
             eventManager.StartCoroutine(eventManager.Event2_7());
         }
@@ -371,15 +370,16 @@ public class Turn_Manager : MonoBehaviour
 
         if (day == 2 && turn == 13){
             eventManager.StartCoroutine(eventManager.Event2_14());
+            
         }
 
-        if (day == 2 && turn == 16){
-            eventManager.Event2_17();
-        }
 
-        if ( day == 2 && turn == 17){
+        if (day == 2 && turn == 18)
+        {
             AudioManager.Instance.PlaySFX("Scream");
+            AudioManager.Instance.PlayMusic("3bgm");
         }
+
 
         if (day == 3 && turn == 0){
             eventManager.Event3_1();
