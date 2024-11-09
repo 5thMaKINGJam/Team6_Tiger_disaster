@@ -31,6 +31,7 @@ public class EventManager : MonoBehaviour
 
     //2일차 귀신들
     public GameObject maskLeg;
+    public GameObject[] maskMonster3;
     public GameObject neckMonster2;
     public GameObject neckMonster3;
     public GameObject neckFace;
@@ -268,7 +269,7 @@ public class EventManager : MonoBehaviour
             AudioManager.Instance.PlaySFX("BodyDump");
             float fallSpeed = 100f;  // 떨어지는 속도
             legMonster.transform.position = new Vector3 (0, 12, 0);
-            while (legMonster.transform.position.y > -12f)
+            while (legMonster.transform.position.y > -13f)
             {
                 legMonster.transform.position += Vector3.down * fallSpeed * Time.deltaTime;
                 yield return null;
@@ -395,6 +396,47 @@ public class EventManager : MonoBehaviour
         }
         isInEvent = false;
         btn.interactable = true;
+    }
+
+    public void Event2_9(){
+        Debug.Log("이벤트 2-9");
+        // 이전 시퀀스를 정리하고 새 시퀀스 생성
+        if (mySequence != null) mySequence.Kill();
+
+        mySequence = DOTween.Sequence();
+        mySequence.OnStart(() => {
+            btn.interactable = false;
+
+        }).AppendCallback(() => { maskMonster3[0].SetActive(true); })  // 객체 활성화
+        .AppendInterval(1f)                         // 1초 동안 유지
+        .AppendCallback(() => { maskMonster3[0].SetActive(false); maskMonster3[1].SetActive(true);  }) // 객체 활성화
+        .AppendInterval(1f)
+        .AppendCallback(() => { maskMonster3[1].SetActive(false); maskMonster3[2].SetActive(true);  }) // 객체 활성화
+        .AppendInterval(1f)
+        .AppendCallback(() => {
+        // maskMonster3[1]의 첫 번째 자식인 머리 오브젝트를 2초 동안 아래로 굴러떨어지게 만듬
+        Transform head = maskMonster3[2].transform.GetChild(0); // 첫 번째 자식 (머리 오브젝트)
+
+        // 포물선 모양의 경로로 이동 (x = -t^2 형태, t는 시간)
+        Vector3 startPos = head.position;
+        float fallDuration = 2f;  // 2초 동안 떨어지도록 설정
+        float maxX = 3f;  // x축으로 이동할 최대 거리
+
+        DOTween.To(() => 0f, x => {
+            // -x^2 형태로 이동
+            float y = -Mathf.Pow(x, 2);
+            head.position = new Vector3(startPos.x - x, startPos.y + y, startPos.z); // 포물선 이동
+        }, maxX, fallDuration).SetEase(Ease.InOutSine); // Ease 효과를 추가하여 부드럽게
+
+        // 동시에 회전시키기
+        head.DORotate(new Vector3(0f, 0f, 10f), fallDuration, RotateMode.FastBeyond360)
+            .SetEase(Ease.InOutSine);  // 회전 애니메이션에 Ease 효과 추가
+    })
+        .OnComplete(() => {
+            btn.interactable = true;
+        });
+
+        mySequence.Restart(); // 시퀀스를 다시 시작
     }
 
     //목귀신 기립 작은 버전
