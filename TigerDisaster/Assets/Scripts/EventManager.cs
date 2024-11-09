@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EventManager : MonoBehaviour
 {
@@ -26,6 +27,10 @@ public class EventManager : MonoBehaviour
     public GameObject neckMonster2;
     public GameObject neckMonster3;
     public GameObject neckFace;
+    public TMP_Text dialogueText;  // TextMeshPro 텍스트 컴포넌트
+
+
+    //기타
     public Sprite[] monsterSprite;  // 바뀔 귀신의 이미지
     public bool isInEvent = false;
 
@@ -278,6 +283,28 @@ public class EventManager : MonoBehaviour
 
         // 마지막 위치 고정
         neckFace.transform.position = endPosition;
-        // neckFace.SetActive(false);
+        StartCoroutine(Typing("왜 무 시 해 ?"));
+        yield return new WaitForSeconds(4f);
+        dialogueText.text = "";
+        neckFace.SetActive(false);
+    }
+
+    public void Event2_17(){
+        //장승 비명 재생
+    }
+
+    public IEnumerator Typing(string message){
+        dialogueText.text = "";  // 초기 텍스트 비우기
+        float typingSpeed = 0.3f;
+
+        for (int i = 0; i < message.Length; i++)
+        {
+            dialogueText.text += message[i];  // 한 글자씩 추가
+            yield return new WaitForSeconds(typingSpeed);  // 지연 시간 설정
+        }
+    }
+
+    public void Event3_1(){
+        //페이드인 처리
     }
 }
