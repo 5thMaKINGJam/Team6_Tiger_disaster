@@ -205,7 +205,7 @@ public class EventManager : MonoBehaviour
         btn.interactable = true;
     }
 
-    public void Event1_3() 
+    public void Event1_4() 
     {
         if (!isInEvent){
             isInEvent = true;
@@ -474,7 +474,7 @@ public class EventManager : MonoBehaviour
     }
 
     public void Event3_1(){
-        Debug.Log("이벤트 3-1");
-        //페이드인 처리
+        //이상한 손이 스믈스믈 나옴.         
     }
+
 }

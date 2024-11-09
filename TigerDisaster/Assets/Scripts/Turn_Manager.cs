@@ -290,6 +290,11 @@ public class Turn_Manager : MonoBehaviour
             AudioManager.Instance.PlaySFX("NeckGhostHorror");
         }
 
+        else if (day == 1 && turn == 4)
+        {
+            eventManager.Event1_4();
+
+        }
         else if (day == 1 && turn == 6)
         {
             eventManager.StartCoroutine(eventManager.Event1_6());
@@ -323,6 +328,11 @@ public class Turn_Manager : MonoBehaviour
         else if (day == 1 && turn == 14)
         {
             eventManager.Event1_14();
+        }
+
+        else if (day == 2 && turn == 5)
+        {
+            eventManager.Event2_05();
         }
 
         else if (day == 2 && turn == 7){

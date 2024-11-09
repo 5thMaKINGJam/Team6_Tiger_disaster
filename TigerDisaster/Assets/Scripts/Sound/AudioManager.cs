@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -24,6 +25,20 @@ public class AudioManager : MonoBehaviour
     }
 
     private void Start()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName == "startMenu")
+        {
+            PlayMusic("Start");  // "Start" 씬일 경우 "Start" 음악 재생
+        }
+        else if (sceneName == "Stage")
+        {
+            PlayBGMforMainGame();
+        }
+    }
+
+    public void PlayBGMforMainGame()
     {
         Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
         int day = dayAndTurn.Item1;
