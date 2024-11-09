@@ -83,11 +83,11 @@ public class Turn_Manager : MonoBehaviour
         else if (currentday == 3) {
             currentDayList = day3;
         }
-        else
-        {
-            Debug.LogError("Invalid currentday value.");
-            return;
-        }
+        // else
+        // {
+        //     Debug.LogError("Invalid currentday value.");
+        //     return;
+        // }
 
         if (currentnum == 0 && currentDayList != day0)
         {
@@ -371,6 +371,8 @@ public class Turn_Manager : MonoBehaviour
         if (day == 3 && turn == 5){
             sceneMove.ChangeScene();
         }
+
+        sceneMove.ChangeScene();
 
 
 
