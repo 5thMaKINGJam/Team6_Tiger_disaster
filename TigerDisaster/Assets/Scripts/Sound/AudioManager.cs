@@ -13,29 +13,58 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            // 새로 로드된 씬에서 이미 AudioManager가 존재하면 삭제
+            if (SceneManager.GetActiveScene().name == "startMenu")
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
+      
+    }
+    private void OnEnable()
+    {
+        // 씬 로드 후 처리
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        string sceneName = SceneManager.GetActiveScene().name;
+        // 씬 로드 이벤트 해제
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string sceneName = scene.name;
 
         if (sceneName == "startMenu")
         {
-            PlayMusic("Start");  // "Start" 씬일 경우 "Start" 음악 재생
+            PlayMusic("Start");  // "startMenu" 씬일 경우 "Start" 음악 재생
         }
         else if (sceneName == "Stage")
         {
             PlayBGMforMainGame();
         }
+        else
+        {
+            //에필로그
+        }
+    }
+
+    private void Start()
+    {
+        PlayMusic("Start");
     }
 
     public void PlayBGMforMainGame()
