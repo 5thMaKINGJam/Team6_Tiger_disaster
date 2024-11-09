@@ -1165,7 +1165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c47882e7ab9d77488c8eedbad378c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFadeIn: 0
+  isFadeIn: 1
   panel: {fileID: 564637079}
 --- !u!1 &1522213323
 GameObject:
@@ -1263,7 +1263,6 @@ GameObject:
   - component: {fileID: 1939225157}
   - component: {fileID: 1939225156}
   - component: {fileID: 1939225155}
-  - component: {fileID: 1939225159}
   m_Layer: 5
   m_Name: continue
   m_TagString: Untagged
