@@ -10,6 +10,7 @@ public class FadeController : MonoBehaviour // Panel 불투명도 조절해 페�
 
     void Start()
     {
+        Debug.Log("isFadeIn: " + isFadeIn);
         if (!panel)
         {
             Debug.LogError("Panel 오브젝트를 찾을 수 없습니다.");
@@ -42,6 +43,7 @@ public class FadeController : MonoBehaviour // Panel 불투명도 조절해 페�
 
         while (elapsedTime <= fadedTime)
         {
+            Debug.Log(elapsedTime);
             panel.GetComponent<CanvasRenderer>().SetAlpha(Mathf.Lerp(1f, 0f, elapsedTime / fadedTime));
             
             elapsedTime += Time.deltaTime;
@@ -49,7 +51,6 @@ public class FadeController : MonoBehaviour // Panel 불투명도 조절해 페�
         }
         Debug.Log("Fade In 끝");
         panel.SetActive(false); // Panel을 비활성화
-        onCompleteCallback?.Invoke(); // 이후에 해야 하는 다른 액션이 있는 경우(null이 아님) 진행한다
         yield break;
     }
 
@@ -67,7 +68,6 @@ public class FadeController : MonoBehaviour // Panel 불투명도 조절해 페�
         }
 
         Debug.Log("Fade Out 끝");
-        onCompleteCallback?.Invoke(); // 이후에 해야 하는 다른 액션이 있는 경우(null이 아님) 진행한다
         yield break;
     }
 
