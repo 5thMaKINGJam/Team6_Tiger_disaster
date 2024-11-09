@@ -41,7 +41,7 @@ public class EventManager : MonoBehaviour
 
     //기타
     public Sprite[] monsterSprite;  // 바뀔 귀신의 이미지
-    public bool isInEvent = false;
+    public static bool isInEvent = false;
 
     void Awake(){
         dialogueManager = FindObjectOfType<dialogueManager>();
@@ -51,12 +51,6 @@ public class EventManager : MonoBehaviour
     {
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
-
-        GameObject deer = GameObject.Find("사슴"); // "Deer"는 사슴 객체의 이름
-        if (deer != null)
-        {
-            deerAnimator = deer.GetComponent<Animator>(); // Animator 컴포넌트 가져오기
-        }
     }
 
     void Update() 
@@ -78,8 +72,7 @@ public class EventManager : MonoBehaviour
 
     public void Event0_3()
     {
-        if (!isInEvent)
-        {
+        if (!isInEvent){
             isInEvent = true;
             btn.interactable = false;
             Dear.SetActive(true);
@@ -102,7 +95,7 @@ public class EventManager : MonoBehaviour
             wallMonseter1.SetActive(false);
             wallMonseter2.SetActive(true);
             wall.SetActive(true);
-
+            
             AudioManager.Instance.PlaySFX("Shock1");
 
             float slideDuration = 2.0f;  // 이동 시간
@@ -131,7 +124,6 @@ public class EventManager : MonoBehaviour
         wall.SetActive(false);
     }
 
- 
     // 시퀀스를 재생하는 메서드
     public void Event0_13()
     {
@@ -212,20 +204,14 @@ public class EventManager : MonoBehaviour
         btn.interactable = true;
     }
 
-    public void Event1_3() {
-
-        if (!isInEvent)
-        {
+    public void Event1_3() 
+    {
+        if (!isInEvent){
             isInEvent = true;
             btn.interactable = false;
-
             Dear.SetActive(true);
             Invoke("DeactivateND", 1f);
-
         }
-
-
-
     }
 
     //다리 귀신 흔들리는 이벤트
@@ -299,6 +285,8 @@ public class EventManager : MonoBehaviour
     public void Event1_11(){
         Debug.Log("이벤트 1-11");
         maskMonseter2.SetActive(false);
+        dialogueManager.SelectDialogue(2);
+        dialogueManager.DisplayCurrentDialogue();
         //철퍽 재생
         AudioManager.Instance.PlaySFX("TalGhostWalking");
     }
@@ -329,7 +317,7 @@ public class EventManager : MonoBehaviour
     public void Event1_14(){
         Debug.Log("이벤트 1-14");
         //다이얼로그 호출
-        dialogueManager.SelectDialogue(2);
+        dialogueManager.SelectDialogue(3);
         dialogueManager.DisplayCurrentDialogue();
     }
     public void Event2_05() {
@@ -342,15 +330,10 @@ public class EventManager : MonoBehaviour
             StrangeDear.SetActive(true);
             Invoke("DeactivateSD", 1.7f);
         }
-       
-
-
-
     }
 
     void DeactivateND()
     {   
-        
         Dear.SetActive(false);
         isInEvent = false;
         btn.interactable = true;
@@ -364,15 +347,18 @@ public class EventManager : MonoBehaviour
     //절벽 등장, 2초후 다이얼로그 등장
     public IEnumerator Event2_7(){
         Debug.Log("이벤트 2-7");
-        btn.interactable = false;
-        AudioManager.Instance.PlayMusic("WindBlow");
-        // 2초 대기
-        yield return new WaitForSeconds(2f);
-        //다이얼로그 호출
-        dialogueManager.SelectDialogue(3);
-        dialogueManager.DisplayCurrentDialogue();
-        //페이드인아웃
-
+        if(!isInEvent){
+            isInEvent = true;
+            btn.interactable = false;
+            AudioManager.Instance.PlayMusic("WindBlow");
+            // 2초 대기
+            yield return new WaitForSeconds(2f);
+            //다이얼로그 호출
+            dialogueManager.SelectDialogue(4);
+            dialogueManager.DisplayCurrentDialogue();
+            //페이드인아웃
+        }        
+        isInEvent = false;
         btn.interactable = true;
 
     }
@@ -380,19 +366,21 @@ public class EventManager : MonoBehaviour
     //탈귀신 다리만 등장
     public IEnumerator Event2_8(){
         Debug.Log("이벤트 2-8");
-        AudioManager.Instance.PlayMusic("Epilogue");
-        btn.interactable = false;
-        maskLeg.SetActive(true);
-        //웃는 소리 출력
-        AudioManager.Instance.PlaySFX("TalGhostLaugh");
-        yield return new WaitForSeconds(2f);
-        //철
-        //페이드인아웃 처리
-
-        maskLeg.SetActive(false);
-        AudioManager.Instance.PlaySFX("TalGhostWalking");
-        Invoke("PlaySound", 0.4f);
-
+        if(!isInEvent){
+            isInEvent = true;
+            btn.interactable = false;
+            AudioManager.Instance.PlayMusic("Epilogue");
+            maskLeg.SetActive(true);
+            //웃는 소리 출력
+            AudioManager.Instance.PlaySFX("TalGhostLaugh");
+            yield return new WaitForSeconds(2f);
+            //철
+            //페이드인아웃 처리
+            maskLeg.SetActive(false);
+            AudioManager.Instance.PlaySFX("TalGhostWalking");
+            Invoke("PlaySound", 0.4f);
+        }
+        isInEvent = false;
         btn.interactable = true;
     }
 
@@ -408,43 +396,46 @@ public class EventManager : MonoBehaviour
         neckMonster2.SetActive(false);
         neckMonster3.SetActive(true);
         //다이얼로그 불러와야함
-        dialogueManager.SelectDialogue(4);
+        dialogueManager.SelectDialogue(5);
         dialogueManager.DisplayCurrentDialogue();
     }
 
     //목 귀신 얼굴 내려오는 이벤트
     public IEnumerator Event2_14(){
         Debug.Log("이벤트 2-14");
-        AudioManager.Instance.PlaySFX("NeckGhostFace");
-        neckMonster3.SetActive(false);
-        btn.interactable = false;
-        neckFace.SetActive(true);
-        Vector3 startPosition = new Vector3(0.5f, 7.2f, 0);   // 처음 위치 (씬 밖)
-        Vector3 endPosition = new Vector3(0, 2.85f, 0);     // 최종 위치 (씬 안)
-        float duration = 5.0f;                              // 이동 시간 (조정 가능)
-        float elapsedTime = 0f;
+        if(!isInEvent){
+            AudioManager.Instance.PlaySFX("NeckGhostFace");
+            neckMonster3.SetActive(false);
+            btn.interactable = false;
+            neckFace.SetActive(true);
+            Vector3 startPosition = new Vector3(0.5f, 7.2f, 0);   // 처음 위치 (씬 밖)
+            Vector3 endPosition = new Vector3(0, 2.85f, 0);     // 최종 위치 (씬 안)
+            float duration = 5.0f;                              // 이동 시간 (조정 가능)
+            float elapsedTime = 0f;
 
-        // 초기 위치 설정
-        neckFace.transform.position = startPosition;
-        // 1.5초 대기
-        yield return new WaitForSeconds(1.5f);
-        // 카메라 흔들림 5초 동안
-            StartCoroutine(CameraShake(5f, 0.1f)); //5초, 강도 0.1
-        // 지정된 시간 동안 천천히 이동
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;  // 시간 비율
-            neckFace.transform.position = Vector3.Lerp(startPosition, endPosition, t);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            // 초기 위치 설정
+            neckFace.transform.position = startPosition;
+            // 1.5초 대기
+            yield return new WaitForSeconds(1.5f);
+            // 카메라 흔들림 5초 동안
+                StartCoroutine(CameraShake(5f, 0.1f)); //5초, 강도 0.1
+            // 지정된 시간 동안 천천히 이동
+            while (elapsedTime < duration)
+            {
+                float t = elapsedTime / duration;  // 시간 비율
+                neckFace.transform.position = Vector3.Lerp(startPosition, endPosition, t);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // 마지막 위치 고정
+            neckFace.transform.position = endPosition;
+            StartCoroutine(Typing("왜 무 시 해 ?"));
+            yield return new WaitForSeconds(4f);
+            dialogueText.text = "";
+            neckFace.SetActive(false);
         }
-
-        // 마지막 위치 고정
-        neckFace.transform.position = endPosition;
-        StartCoroutine(Typing("왜 무 시 해 ?"));
-        yield return new WaitForSeconds(4f);
-        dialogueText.text = "";
-        neckFace.SetActive(false);
+        isInEvent = true;
         btn.interactable = true;
     }
 

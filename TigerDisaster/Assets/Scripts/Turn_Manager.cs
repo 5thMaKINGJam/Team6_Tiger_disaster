@@ -38,7 +38,6 @@ public class Turn_Manager : MonoBehaviour
 
     Tuple<int, int> dayAndTurn;
 
-
     void Awake()
     {
         eventManager = FindObjectOfType<EventManager>();
@@ -326,7 +325,7 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event1_14();
         }
 
-        else if (day == 2 && turn == 6){
+        else if (day == 2 && turn == 7){
             eventManager.StartCoroutine(eventManager.Event2_7());
         }
 
