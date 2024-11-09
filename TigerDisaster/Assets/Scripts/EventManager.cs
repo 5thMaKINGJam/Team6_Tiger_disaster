@@ -11,6 +11,9 @@ public class EventManager : MonoBehaviour
     private dialogueManager dialogueManager;
     private Vector3 originalCameraPos;
 
+    private Animator deerAnimator;
+    public GameObject Dear;
+
     //0일차 귀신들
     public GameObject wallMonseter1;
     public GameObject wallMonseter2;
@@ -43,6 +46,12 @@ public class EventManager : MonoBehaviour
         
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
+
+        GameObject deer = GameObject.Find("사슴"); // "Deer"는 사슴 객체의 이름
+        if (deer != null)
+        {
+            deerAnimator = deer.GetComponent<Animator>(); // Animator 컴포넌트 가져오기
+        }
     }
 
     void Update() 
@@ -59,6 +68,18 @@ public class EventManager : MonoBehaviour
         }
 
         mainCamera.transform.position = originalCameraPos;
+    }
+
+    public void Event0_3() {
+        Dear.SetActive(true);
+       
+    }
+ 
+
+    public void Event0_4()
+    {
+        Dear.SetActive(false);
+       
     }
 
     //벽귀신 등장 이벤트
