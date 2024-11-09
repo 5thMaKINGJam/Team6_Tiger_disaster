@@ -288,8 +288,10 @@ public class EventManager : MonoBehaviour
         maskMonseter2.SetActive(false);
         dialogueManager.SelectDialogue(2);
         dialogueManager.DisplayCurrentDialogue();
+        
         //철퍽 재생
         AudioManager.Instance.PlaySFX("TalGhostWalking");
+        AudioManager.Instance.PlayMusic("backBreathe");
     }
 
     //탈귀신 쫒아옴
@@ -320,6 +322,7 @@ public class EventManager : MonoBehaviour
         //다이얼로그 호출
         dialogueManager.SelectDialogue(3);
         dialogueManager.DisplayCurrentDialogue();
+        AudioManager.Instance.PlayMusic("2bgm");
     }
     public void Event2_05() {
 
@@ -370,7 +373,7 @@ public class EventManager : MonoBehaviour
         if(!isInEvent){
             isInEvent = true;
             btn.interactable = false;
-            AudioManager.Instance.PlayMusic("Epilogue");
+            AudioManager.Instance.PlayMusic("2bgm");
             maskLeg.SetActive(true);
             //웃는 소리 출력
             AudioManager.Instance.PlaySFX("TalGhostLaugh");
