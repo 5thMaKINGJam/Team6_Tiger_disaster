@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 389022605}
   - component: {fileID: 389022604}
   - component: {fileID: 389022603}
+  - component: {fileID: 389022606}
   m_Layer: 0
   m_Name: "\uC774\uC0C1\uD55C\uC0AC\uC2B4"
   m_TagString: Untagged
@@ -562,6 +563,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &389022606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389022602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140c6fd6b1d043a4aa9e6f8e2a8debeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &428944801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1259,7 @@ MonoBehaviour:
   neckMonster2: {fileID: 1270564075}
   neckMonster3: {fileID: 902527471}
   neckFace: {fileID: 1397187332}
+  Face: {fileID: 0}
   footPrint:
   - {fileID: 1726043875}
   - {fileID: 1974560412}
@@ -2549,6 +2563,7 @@ GameObject:
   - component: {fileID: 1320896137}
   - component: {fileID: 1320896136}
   - component: {fileID: 1320896135}
+  - component: {fileID: 1320896138}
   m_Layer: 0
   m_Name: "\uC0AC\uC2B4"
   m_TagString: Untagged
@@ -2643,6 +2658,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1320896138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320896134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140c6fd6b1d043a4aa9e6f8e2a8debeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1363708952
 GameObject:
   m_ObjectHideFlags: 0
@@ -4660,6 +4687,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2bee0a47a373ccc43afe1a1d2bb779d5, type: 3}
   - name: WordImpact
     clip: {fileID: 8300000, guid: 01055b29bda1e024b9e3539ebcc7f372, type: 3}
+  - name: DeerShock
+    clip: {fileID: 8300000, guid: 81231b186cda507478a56096886cbdf6, type: 3}
   musicSource: {fileID: 6887833398213225702}
   sfxSource: {fileID: 6887833398174173678}
 --- !u!1 &6887833397277909403
