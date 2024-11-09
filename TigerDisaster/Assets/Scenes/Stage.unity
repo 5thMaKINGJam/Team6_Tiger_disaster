@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 475582792}
   - component: {fileID: 475582793}
   m_Layer: 0
-  m_Name: Panel_Manager
+  m_Name: Turn_Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,6 +466,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 18f2ceac699c470468757e53fbca1b39, type: 3}
   - {fileID: 21300000, guid: 5e7d9c313e485b9468665ae0025c259c, type: 3}
   - {fileID: 21300000, guid: 6f4e02ec3f72fda44b40898e8f0356da, type: 3}
+  - {fileID: 21300000, guid: 9834077e6d4fc844dad4c3f630707dfb, type: 3}
+  - {fileID: 21300000, guid: cd9f4eea7a5faf34488fcbcc18bbbd84, type: 3}
   circularImage: {fileID: 616804678}
   Ghosts:
   - {fileID: 671435618}
