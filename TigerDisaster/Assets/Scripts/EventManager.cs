@@ -10,6 +10,7 @@ public class EventManager : MonoBehaviour
     private Vector3 originalCameraPos;
     public GameObject wallMonseter1;
     public GameObject wallMonseter2;
+    public GameObject wall;
     public GameObject neckMonster;
     public GameObject legMonster;
     public Sprite[] monsterSprite;  // 바뀔 귀신의 이미지
@@ -53,6 +54,7 @@ public class EventManager : MonoBehaviour
             btn.interactable = false;
             wallMonseter1.SetActive(false);
             wallMonseter2.SetActive(true);
+            wall.SetActive(true);
             float slideDuration = 2.0f;  // 이동 시간
             float targetXPosition = -6.7f;  // 목표 위치
 
@@ -76,6 +78,7 @@ public class EventManager : MonoBehaviour
         isInEvent = false;
         wallMonseter2.SetActive(false);
         btn.interactable = true;
+        wall.SetActive(false);
     }
 
     //목귀신 흔들리는 이벤트
