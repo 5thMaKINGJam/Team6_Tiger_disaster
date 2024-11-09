@@ -38,7 +38,6 @@ public class Turn_Manager : MonoBehaviour
 
     Tuple<int, int> dayAndTurn;
 
-
     void Awake()
     {
         eventManager = FindObjectOfType<EventManager>();
@@ -290,7 +289,12 @@ public class Turn_Manager : MonoBehaviour
             eventManager.StartCoroutine(eventManager.Event1_2());
             AudioManager.Instance.PlaySFX("NeckGhostHorror");
         }
+        /*
+        else if (day == 1 && turn == 4)
+        {
+            eventManager.Event1_4();
 
+        }*/
         else if (day == 1 && turn == 6)
         {
             eventManager.StartCoroutine(eventManager.Event1_6());
@@ -326,7 +330,12 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event1_14();
         }
 
-        else if (day == 2 && turn == 6){
+        else if (day == 2 && turn == 5)
+        {
+            eventManager.Event2_05();
+        }
+
+        else if (day == 2 && turn == 7){
             eventManager.StartCoroutine(eventManager.Event2_7());
         }
 
@@ -345,6 +354,14 @@ public class Turn_Manager : MonoBehaviour
         else if (day == 2 && turn == 14){
             eventManager.StartCoroutine(eventManager.Event2_14());
             
+        }
+        else if (day == 2 && turn == 16)
+        {
+            eventManager.Event2_16();
+        }
+        else if (day == 2 && turn == 17)
+        {
+            eventManager.Event2_17();
         }
 
         else if (day == 2 && turn == 18)

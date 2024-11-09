@@ -14,7 +14,7 @@ public class PauseScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)){
+        if (Input.GetKeyDown(KeyCode.Escape) && !EventManager.isInEvent){
             if (IsPaused)
                 Resume();
             else
@@ -27,6 +27,7 @@ public class PauseScript : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
+        AudioManager.Instance.UnmuteAllMusic();
     }
 
     public void Pause()
@@ -34,9 +35,11 @@ public class PauseScript : MonoBehaviour
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
+        AudioManager.Instance.MuteAllMusic();
     }
 
     public void QuitGame(){
+        AudioManager.Instance.UnmuteAllMusic();
 
         //지금까지의 Day, Turn 저장
         SaveManager.saveData();
