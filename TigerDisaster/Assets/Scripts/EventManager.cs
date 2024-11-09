@@ -32,6 +32,7 @@ public class EventManager : MonoBehaviour
     public GameObject neckMonster2;
     public GameObject neckMonster3;
     public GameObject neckFace;
+    public GameObject Face;
 
     public GameObject[] footPrint;
 
@@ -437,6 +438,20 @@ public class EventManager : MonoBehaviour
         }
         isInEvent = true;
         btn.interactable = true;
+    }
+
+    public void Event2_16()
+    {
+        Debug.Log("이벤트 2-16");
+        
+        Face.SetActive(true);
+    }
+
+    public void Event2_17()
+    {
+        Debug.Log("이벤트 2-17");
+
+        Face.SetActive(false);
     }
 
     public IEnumerator Typing(string message){
