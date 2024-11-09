@@ -35,7 +35,7 @@ public class EventManager : MonoBehaviour
     public bool isInEvent = false;
 
     void Awake(){
-        //dialogueManager = FindObjectOfType<//dialogueManager>();
+        dialogueManager = FindObjectOfType<dialogueManager>();
     }
 
     void Start()
@@ -105,9 +105,9 @@ public class EventManager : MonoBehaviour
     //홍살문 등장 하고 다이얼로그
     public void Event0_15(){
         Debug.Log("이벤트 0-15");
-        //다이얼로그 호출
-        //dialogueManager.SelectDialogue(1);
-        //dialogueManager.DisplayCurrentDialogue();
+        // 다이얼로그 호출
+        dialogueManager.SelectDialogue(1);
+        dialogueManager.DisplayCurrentDialogue();
     }
 
     //목귀신 흔들리는 이벤트
@@ -254,8 +254,8 @@ public class EventManager : MonoBehaviour
     public void Event1_14(){
         Debug.Log("이벤트 1-14");
         //다이얼로그 호출
-        //dialogueManager.SelectDialogue(2);
-        //dialogueManager.DisplayCurrentDialogue();
+        dialogueManager.SelectDialogue(2);
+        dialogueManager.DisplayCurrentDialogue();
     }
 
     //절벽 등장, 2초후 다이얼로그 등장
@@ -265,8 +265,8 @@ public class EventManager : MonoBehaviour
         // 2초 대기
         yield return new WaitForSeconds(2f);
         //다이얼로그 호출
-        //dialogueManager.SelectDialogue(3);
-        //dialogueManager.DisplayCurrentDialogue();
+        dialogueManager.SelectDialogue(3);
+        dialogueManager.DisplayCurrentDialogue();
         //페이드인아웃
 
         btn.interactable = true;
@@ -303,8 +303,8 @@ public class EventManager : MonoBehaviour
         neckMonster2.SetActive(false);
         neckMonster3.SetActive(true);
         //다이얼로그 불러와야함
-        //dialogueManager.SelectDialogue(4);
-        //dialogueManager.DisplayCurrentDialogue();
+        dialogueManager.SelectDialogue(4);
+        dialogueManager.DisplayCurrentDialogue();
     }
 
     //목 귀신 얼굴 내려오는 이벤트
@@ -346,7 +346,6 @@ public class EventManager : MonoBehaviour
     public void Event2_17(){
         Debug.Log("이벤트 2-17");
         //장승 비명 재생
-        AudioManager.Instance.PlaySFX("Scream");
         AudioManager.Instance.PlayMusic("3bgm");
         
     }
