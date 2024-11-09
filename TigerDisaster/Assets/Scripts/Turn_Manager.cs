@@ -7,11 +7,12 @@ using System;
 
 public class Turn_Manager : MonoBehaviour
 {
-    private int currentnum = 0;
-    private int currentday = 0;
+  
     public Button button;
     public GameObject circularImageObject;
     public GameObject bg;
+    public GameObject Jang;
+    public GameObject RedJang;
     public GameObject RedDoor0;
     public GameObject RedDoor1;
     private SpriteRenderer bgSpriter;
@@ -20,7 +21,10 @@ public class Turn_Manager : MonoBehaviour
     private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
 
-    
+    private int currentnum = 1;
+    private int currentday = 0;
+
+
     private EventManager eventManager;
 
     // public List<GameObject> panels;
@@ -45,15 +49,20 @@ public class Turn_Manager : MonoBehaviour
         Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
         currentday = dayAndTurn.Item1;
         currentnum = dayAndTurn.Item2;
+
+        if (currentday == 0 && currentnum == 1)
+        {
+            SaveManager.setDayAndTurn(currentday, currentnum);
+        }
+
+
     }
-
-
-
-
 
 
     public void ShowPanel()
     {
+    
+
         AppearImage();
 
         SaveManager.setDayAndTurn(currentday, currentnum);
@@ -82,20 +91,39 @@ public class Turn_Manager : MonoBehaviour
         {
             RedDoor1.SetActive(false);
             RedDoor0.SetActive(true);
+            Jang.SetActive(false);
+            RedJang.SetActive(false);
+
+
+            
+
         }
         else if (currentDayList == day0 && currentnum == 1) {
             RedDoor1.SetActive(false);
             RedDoor0.SetActive(true);
+            Jang.SetActive(false);
+
         }
         else if (currentnum == currentDayList.Count - 1 || (currentnum == 0 && currentDayList == day0))
         {
             RedDoor0.SetActive(false);
-            RedDoor1.SetActive(true); 
+            RedDoor1.SetActive(true);
+
+            if (currentDayList == day1 || currentDayList == day2 || currentDayList == day3)
+            {
+                RedJang.SetActive(true);
+            }
+            else
+            {
+                Jang.SetActive(true);
+            }
         }
         else
         {
             RedDoor0.SetActive(false);
             RedDoor1.SetActive(false);
+            Jang.SetActive(false);
+            RedJang.SetActive(false);
         }
 
         if (currentDayList[currentnum] == 0)  //�⺻
