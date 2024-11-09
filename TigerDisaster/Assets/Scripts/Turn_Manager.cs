@@ -17,7 +17,7 @@ public class Turn_Manager : MonoBehaviour
     private SpriteRenderer bgSpriter;
     public Sprite[] BackGroundSprite;
     public Image circularImage;
-    private float duration = 0.5f;  // ½½¶óÀÌ´õ°¡ 1¿¡¼­ 0À¸·Î ÁÙ¾îµå´Â ½Ã°£
+    private float duration = 0.5f;  // ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     public GameObject[] Ghosts;
     
     private EventManager eventManager;
@@ -29,6 +29,7 @@ public class Turn_Manager : MonoBehaviour
     private List<int> day2 = new List<int> { 6, 6, 4,5,6,6,6,3,6,6,4 };
     private List<int> day3 = new List<int> { 0, 0, 0, 0, 0, 6, 6, 3, 6, 6, 4 };
 
+    private Camera camera;
 
 
 
@@ -39,9 +40,7 @@ public class Turn_Manager : MonoBehaviour
 
         eventManager = FindObjectOfType<EventManager>();
         bgSpriter = bg.GetComponent<SpriteRenderer>();
-        //get¿À´Ã turn 
-
-
+        camera = Camera.main;
     }
 
 
@@ -92,31 +91,31 @@ public class Turn_Manager : MonoBehaviour
             RedDoor1.SetActive(false);
         }
 
-        if (currentDayList[currentnum] == 0)  //±âº»
+        if (currentDayList[currentnum] == 0)  //ï¿½âº»
         {
             bgSpriter.sprite = bgSpriter.sprite == BackGroundSprite[0] ? BackGroundSprite[1] : BackGroundSprite[0];
         }
-        else if (currentDayList[currentnum] == 1) //²©ÀÎ±æ 1
+        else if (currentDayList[currentnum] == 1) //ï¿½ï¿½ï¿½Î±ï¿½ 1
         {
             bgSpriter.sprite = BackGroundSprite[2];
         }
-        else if (currentDayList[currentnum] == 2) //²©ÀÎ±æ 2
+        else if (currentDayList[currentnum] == 2) //ï¿½ï¿½ï¿½Î±ï¿½ 2
         {
             bgSpriter.sprite = BackGroundSprite[3];
         }
-        else if (currentDayList[currentnum] == 3) //Àýº®
+        else if (currentDayList[currentnum] == 3) //ï¿½ï¿½ï¿½ï¿½
         {
             bgSpriter.sprite = BackGroundSprite[4];
         }
-        else if (currentDayList[currentnum] == 4) //2ÀÏÂ÷ ²©ÀÎ±æ 1
+        else if (currentDayList[currentnum] == 4) //2ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±ï¿½ 1
         {
             bgSpriter.sprite = BackGroundSprite[5];
         }
-        else if (currentDayList[currentnum] == 5) //2ÀÏÂ÷ ²©ÀÎ±æ 2
+        else if (currentDayList[currentnum] == 5) //2ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±ï¿½ 2
         {
             bgSpriter.sprite = BackGroundSprite[6];
         }
-        else if (currentDayList[currentnum] == 6) { //2ÀÏÂ÷ ±âº»
+        else if (currentDayList[currentnum] == 6) { //2ï¿½ï¿½ï¿½ï¿½ ï¿½âº»
             if (bgSpriter.sprite == BackGroundSprite[7])
             {
                 bgSpriter.sprite = BackGroundSprite[8];
@@ -127,7 +126,7 @@ public class Turn_Manager : MonoBehaviour
             }
         } 
 
-        //Á¤¸® ±âº»1,2 , ²©ÀÎ±æ 1,2, Àýº® ,2ÀÏÂ÷ ²©ÀÎ±æ 1,2, 2ÀÏÂ÷ ±âº» 1,2,
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½âº»1,2 , ï¿½ï¿½ï¿½Î±ï¿½ 1,2, ï¿½ï¿½ï¿½ï¿½ ,2ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±ï¿½ 1,2, 2ï¿½ï¿½ï¿½ï¿½ ï¿½âº» 1,2,
         currentnum++;
         
 
@@ -176,13 +175,36 @@ public class Turn_Manager : MonoBehaviour
             yield return null;
         }
 
-        // ÃÖÁ¾ °ªÀ» Á¤È®ÇÏ°Ô ¸ÂÃçÁÜ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         circularImage.fillAmount = endValue;
 
 
     }
-    
-  
+
+    public IEnumerator CameraShake()
+    {
+        float shakeDuration = 0.3f;   // ï¿½ï¿½é¸² ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+        float shakeIntensity = 0.3f;  // ï¿½ï¿½é¸² ï¿½ï¿½ï¿½ï¿½
+
+        Vector3 originalPosition = camera.transform.position; // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+
+        for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
+        {
+            // ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½é¸®ï¿½ï¿½ï¿½ï¿½ Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+            float offsetY = -Mathf.Sin(elapsed * 15) * shakeIntensity;  // ï¿½Ö±â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+            camera.transform.position = originalPosition + new Vector3(0, offsetY, 0);
+
+            yield return null; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+        }
+
+        // ï¿½ï¿½é¸²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        camera.transform.position = originalPosition;
+    }
+
+    public void cameraWalking()
+    {
+        StartCoroutine(CameraShake());
+    }
 
     void AppearImage() {
 
@@ -222,9 +244,6 @@ public class Turn_Manager : MonoBehaviour
         {
             eventManager.StartCoroutine(eventManager.Event0_10());
         }
-
-       
-
 
 
 
