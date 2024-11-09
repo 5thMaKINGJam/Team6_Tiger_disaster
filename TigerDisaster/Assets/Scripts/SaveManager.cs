@@ -3,31 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-public class SaveManager : MonoBehaviour
+public static class SaveManager
 {
-    public static int currentDay;
-    public static int currentTurn;
-    public const int turnsPerDay = 15;
-
-    void Start()
+    public static void setDayAndTurn(int currentDay, int currentTurn)
     {
-        // 현재 일차와 턴을 불러오기. 저장된 값이 없다면 초기값으로 설정
-        currentDay = PlayerPrefs.GetInt("CurrentDay", 0);
-        currentTurn = PlayerPrefs.GetInt("CurrentTurn", 1);
-
-        //임시 초기화 용
-        currentTurn = 0;
-        currentDay = 0;
-    }
-
-    public static void setDayAndTurn()
-    {
-        currentTurn++;
-        if (currentTurn >= turnsPerDay)
-        {
-            currentTurn = 0;
-            currentDay++;
-        }
         // PlayerPrefs에 현재 일차와 턴 저장
         Debug.Log("현재 일차-현재 턴: " + currentDay + "-" + currentTurn);
         PlayerPrefs.SetInt("CurrentDay", currentDay);
