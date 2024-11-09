@@ -1129,6 +1129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   btn: {fileID: 1074712697}
+  Dear: {fileID: 0}
   wallMonseter1: {fileID: 793136035}
   wallMonseter2: {fileID: 190333895}
   wall: {fileID: 1934521586}
@@ -4133,6 +4134,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: bde2c1fdbd80f0344a7375f447c88516, type: 3}
   - name: Epilogue
     clip: {fileID: 8300000, guid: 5dbdeb4fd4bb7754dba94362e962bfdb, type: 3}
+  - name: WindBlow
+    clip: {fileID: 8300000, guid: 415684b75b23f8b47a8b7e010071a94e, type: 3}
   sfxSounds:
   - name: BodyDump
     clip: {fileID: 8300000, guid: 1afa7f78aeeb93746905d1faf40d6f21, type: 3}
@@ -4152,6 +4155,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b6993af231f2a7c41ae85c97eb99999b, type: 3}
   - name: WallGhostAppear
     clip: {fileID: 8300000, guid: 085b14bae975b6b47811e1d68d82d04f, type: 3}
+  - name: WallGhostAppear
+    clip: {fileID: 8300000, guid: 085b14bae975b6b47811e1d68d82d04f, type: 3}
+  - name: Shock1
+    clip: {fileID: 8300000, guid: 2bee0a47a373ccc43afe1a1d2bb779d5, type: 3}
+  - name: WordImpact
+    clip: {fileID: 8300000, guid: 01055b29bda1e024b9e3539ebcc7f372, type: 3}
   musicSource: {fileID: 6887833398213225702}
   sfxSource: {fileID: 6887833398174173678}
 --- !u!1 &6887833397277909403
