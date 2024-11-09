@@ -13,6 +13,7 @@ public class EventManager : MonoBehaviour
 
     private Animator deerAnimator;
     public GameObject Dear;
+    public GameObject StrangeDear;
 
     //0일차 귀신들
     public GameObject wallMonseter1;
@@ -71,16 +72,23 @@ public class EventManager : MonoBehaviour
     }
 
     public void Event0_3() {
-        Dear.SetActive(true);
-       
+        if (!isInEvent)
+        {
+            isInEvent = true;
+            btn.interactable = false;
+            Dear.SetActive(true);
+            Invoke("DeactivateND", 1f);
+
+
+        }
+
+
+
+
     }
  
 
-    public void Event0_4()
-    {
-        Dear.SetActive(false);
-       
-    }
+ 
 
     //벽귀신 등장 이벤트
     public void Event0_10(){
@@ -172,6 +180,22 @@ public class EventManager : MonoBehaviour
         }
         isInEvent = false;
         btn.interactable = true;
+    }
+
+    public void Event1_3() {
+
+        if (!isInEvent)
+        {
+            isInEvent = true;
+            btn.interactable = false;
+
+            Dear.SetActive(true);
+            Invoke("DeactivateND", 1f);
+
+        }
+
+
+
     }
 
     //다리 귀신 흔들리는 이벤트
@@ -277,6 +301,34 @@ public class EventManager : MonoBehaviour
         //다이얼로그 호출
         dialogueManager.SelectDialogue(2);
         dialogueManager.DisplayCurrentDialogue();
+    }
+    public void Event2_05() {
+
+        if (!isInEvent)
+        {
+            isInEvent = true;
+            btn.interactable = false;
+
+            StrangeDear.SetActive(true);
+            Invoke("DeactivateSD", 1.7f);
+        }
+       
+
+
+
+    }
+
+    void DeactivateND()
+    {   
+        
+        Dear.SetActive(false);
+        isInEvent = false;
+        btn.interactable = true;
+    }
+    void DeactivateSD() {
+        StrangeDear.SetActive(false);
+        isInEvent = false;
+        btn.interactable = true;
     }
 
     //절벽 등장, 2초후 다이얼로그 등장

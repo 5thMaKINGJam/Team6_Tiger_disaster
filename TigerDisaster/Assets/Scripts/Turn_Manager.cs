@@ -18,7 +18,7 @@ public class Turn_Manager : MonoBehaviour
     private SpriteRenderer bgSpriter;
     public Sprite[] BackGroundSprite;
     public Image circularImage;
-    private float duration = 1f;  // �����̴��� 1���� 0���� �پ��� �ð�
+    private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
 
     private SceneMove sceneMove;
@@ -196,8 +196,7 @@ public class Turn_Manager : MonoBehaviour
     }
 
 
-
-
+ 
 
 
     public void createButton()
@@ -269,11 +268,6 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event0_3();
         }
 
-        if (day == 0 && turn == 3)
-        {
-            eventManager.Event0_4();
-        }
-
 
 
         if (day == 0  && turn == 6)
@@ -313,11 +307,14 @@ public class Turn_Manager : MonoBehaviour
             AudioManager.Instance.PlaySFX("NeckGhostHorror");
         }
 
-        if (day == 1 && turn == 3) { 
+        if (day == 1 && turn == 3) {
+            eventManager.Event1_3();
         
             }
 
-            if (day == 1 && turn == 5)
+     
+
+        if (day == 1 && turn == 5)
         {
             eventManager.StartCoroutine(eventManager.Event1_6());
         }
@@ -352,6 +349,9 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event1_14();
         }
 
+        if (day == 2 && turn == 4) {
+            eventManager.Event2_05();
+        }
 
         if (day == 2 && turn == 6){
             eventManager.StartCoroutine(eventManager.Event2_7());
