@@ -17,8 +17,9 @@ public class Turn_Manager : MonoBehaviour
     private SpriteRenderer bgSpriter;
     public Sprite[] BackGroundSprite;
     public Image circularImage;
-    private float duration = 0.5f;  // �����̴��� 1���� 0���� �پ��� �ð�
+    private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
+
     
     private EventManager eventManager;
 
@@ -26,8 +27,8 @@ public class Turn_Manager : MonoBehaviour
     private List<int> currentDayList;
     private List<int> day0 = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0 };
     private List<int> day1 = new List<int> { 0, 0, 0,0,0,0,0,0 ,0,1,2,0,0,0,0};
-    private List<int> day2 = new List<int> { 6, 6, 4,5,6,6,6,3,6,6,4 };
-    private List<int> day3 = new List<int> { 0, 0, 0, 0, 0, 6, 6, 3, 6, 6, 4 };
+    private List<int> day2 = new List<int> { 6, 6, 4,5,6,6,6,3,6,6,4,5,6,6,6,6,6,6,6 };
+    private List<int> day3 = new List<int> { 7,7,7,7,7,7 };
 
     private Camera camera;
 
@@ -64,6 +65,9 @@ public class Turn_Manager : MonoBehaviour
         else if (currentday == 2)
         {
             currentDayList = day2;
+        }
+        else if (currentday == 3) {
+            currentDayList = day3;
         }
         else
         {
@@ -115,7 +119,8 @@ public class Turn_Manager : MonoBehaviour
         {
             bgSpriter.sprite = BackGroundSprite[6];
         }
-        else if (currentDayList[currentnum] == 6) { //2���� �⺻
+        else if (currentDayList[currentnum] == 6)
+        { //2���� �⺻
             if (bgSpriter.sprite == BackGroundSprite[7])
             {
                 bgSpriter.sprite = BackGroundSprite[8];
@@ -124,9 +129,19 @@ public class Turn_Manager : MonoBehaviour
             {
                 bgSpriter.sprite = BackGroundSprite[7];
             }
-        } 
+        }
+        else if (currentDayList[currentnum] == 7) { //�������� �⺻1,2
+            if (bgSpriter.sprite == BackGroundSprite[9])
+            {
+                bgSpriter.sprite = BackGroundSprite[10];
+            }
+            else
+            {
+                bgSpriter.sprite = BackGroundSprite[9];
+            }
+        }
 
-        //���� �⺻1,2 , ���α� 1,2, ���� ,2���� ���α� 1,2, 2���� �⺻ 1,2,
+        //���� �⺻1,2 , ���α� 1,2, ���� ,2���� ���α� 1,2, 2���� �⺻ 1,2, �������� �⺻1,2
         currentnum++;
         
 
@@ -140,12 +155,12 @@ public class Turn_Manager : MonoBehaviour
         circularImageObject.SetActive(true);
         circularImage.fillAmount = 1f;
 
-        StopCoroutine(FillAmountLerp());
+        // StopCoroutine(FillAmountLerp());
         StartCoroutine(FillAmountLerp());
 
         button.enabled = false;
 
-        Invoke("createButton", 1f);
+        Invoke("createButton", duration);
 
         
     }
@@ -227,7 +242,7 @@ public class Turn_Manager : MonoBehaviour
             Debug.Log("HI");
         }
 
-         if (day == 0 && turn == 7)
+        if (day == 0 && turn == 7)
         {
             rt.localScale = new Vector3(2f, 2f, 1f);
         }
@@ -239,13 +254,78 @@ public class Turn_Manager : MonoBehaviour
 
         if (day == 0 && turn == 9)
         {
-            eventManager.Event0_9();
+            eventManager.Event0_10();
         }
 
         if (day == 0 && turn == 10)
         {
-            eventManager.StartCoroutine(eventManager.Event0_10());
+            eventManager.StartCoroutine(eventManager.Event0_11());
         }
+
+        if (day == 1 && turn == 1)
+        {
+            eventManager.StartCoroutine(eventManager.Event1_2());
+        }
+
+        if (day == 1 && turn == 5)
+        {
+            eventManager.StartCoroutine(eventManager.Event1_6());
+        }
+
+        if (day == 1 && turn == 8)
+        {
+            eventManager.Event1_9();
+        }
+
+        if (day == 1 && turn == 9)
+        {
+            eventManager.Event1_10();
+        }
+
+        if (day == 1 && turn == 10)
+        {
+            eventManager.Event1_11();
+        }
+
+        if (day == 1 && turn == 11)
+        {
+            eventManager.Event1_12();
+        }
+
+        if (day == 1 && turn == 12)
+        {
+            eventManager.Event1_13();
+        }
+
+        if (day == 1 && turn == 13)
+        {
+            eventManager.Event1_14();
+        }
+
+        if (day == 2 && turn == 6){
+            eventManager.StartCoroutine(eventManager.Event2_7());
+        }
+
+        if (day == 2 && turn == 7){
+            eventManager.StartCoroutine(eventManager.Event2_8());
+        }
+
+        if (day == 2 && turn == 11){
+            eventManager.Event2_12();
+        }
+
+        if (day == 2 && turn == 12){
+            eventManager.Event2_13();
+        }
+
+        if (day == 2 && turn == 13){
+            eventManager.StartCoroutine(eventManager.Event2_14());
+        }
+
+        if (day == 2 && turn == 16){
+            eventManager.Event2_17();
+        }
+
 
 
 
