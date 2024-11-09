@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class EventManager : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class EventManager : MonoBehaviour
         {
             deerAnimator = deer.GetComponent<Animator>(); // Animator 컴포넌트 가져오기
         }
+        StartCoroutine(Event2_14());
     }
 
     void Update() 
@@ -426,8 +428,8 @@ public class EventManager : MonoBehaviour
             dialogueText.text += message[i];  // 한 글자씩 추가
             if (message[i] != ' ')
             {
-                Debug.Log(message[i]);
                 AudioManager.Instance.PlaySFX("WordImpact");
+                mainCamera.transform.DOShakePosition(1f, new Vector3(1, 0, 0), 5, 0, false, true, ShakeRandomnessMode.Full);
             }
             yield return new WaitForSeconds(typingSpeed);  // 지연 시간 설정
         }

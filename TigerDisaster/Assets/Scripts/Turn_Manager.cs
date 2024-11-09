@@ -254,12 +254,6 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event0_3();
         }
 
-        if (day == 0 && turn == 4)
-        {
-            //eventManager.Event0_4();
-        }
-
-
 
         if (day == 0  && turn == 7)
         {
