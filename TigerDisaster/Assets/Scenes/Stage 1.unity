@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c47882e7ab9d77488c8eedbad378c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFadeIn: 0
+  isFadeIn: 1
   panel: {fileID: 542478529}
 --- !u!1 &542478529
 GameObject:
@@ -902,6 +902,7 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   btn: {fileID: 1074712697}
   Dear: {fileID: 0}
+  StrangeDear: {fileID: 0}
   wallMonseter1: {fileID: 793136035}
   wallMonseter2: {fileID: 190333895}
   wall: {fileID: 1934521586}
@@ -910,14 +911,19 @@ MonoBehaviour:
   maskMonseter1: {fileID: 1763894680}
   maskMonseter2: {fileID: 1620146113}
   maskLeg: {fileID: 669087855}
+  maskMonster3: []
   neckMonster2: {fileID: 1270564075}
   neckMonster3: {fileID: 902527471}
   neckFace: {fileID: 1397187332}
+  Face: {fileID: 0}
+  blackPanel: {fileID: 0}
+  lastFace: {fileID: 0}
+  hands: []
+  footPrint: []
   dialogueText: {fileID: 1592767557}
   monsterSprite:
   - {fileID: 21300000, guid: b32b29a01aed7ba46beaee1924c84515, type: 3}
   - {fileID: 21300000, guid: 0f30811997238d14fa8151b7f1c6d9a0, type: 3}
-  isInEvent: 0
 --- !u!4 &583891411
 Transform:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class Turn_Manager : MonoBehaviour
     private SpriteRenderer bgSpriter;
     public Sprite[] BackGroundSprite;
     public Image circularImage;
-    private float duration = 1f;  // �����̴��� 1���� 0���� �پ��� �ð�
+    private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
     RectTransform rt;
     private int currentnum = 1;
@@ -266,7 +266,7 @@ public class Turn_Manager : MonoBehaviour
 
         else if (day == 0 && turn == 11)
         {
-            eventManager.StartCoroutine(eventManager.Event0_11());
+            StartCoroutine(eventManager.Event0_11());
         }
 
         if(day == 0 && turn == 13)
@@ -285,7 +285,7 @@ public class Turn_Manager : MonoBehaviour
 
         else if (day == 1 && turn == 2)
         {
-            eventManager.StartCoroutine(eventManager.Event1_2());
+            StartCoroutine(eventManager.Event1_2());
             AudioManager.Instance.PlaySFX("NeckGhostHorror");
         }
         /*
@@ -296,7 +296,7 @@ public class Turn_Manager : MonoBehaviour
         }*/
         else if (day == 1 && turn == 6)
         {
-            eventManager.StartCoroutine(eventManager.Event1_6());
+            StartCoroutine(eventManager.Event1_6());
         }
 
         else if (day == 1 && turn == 9)
@@ -335,11 +335,15 @@ public class Turn_Manager : MonoBehaviour
         }
 
         else if (day == 2 && turn == 7){
-            eventManager.StartCoroutine(eventManager.Event2_7());
+            StartCoroutine(eventManager.Event2_7());
         }
 
         else if (day == 2 && turn == 8){
-            eventManager.StartCoroutine(eventManager.Event2_8());
+            StartCoroutine(eventManager.Event2_8());
+        }
+
+        else if (day == 2 && turn == 9){
+            eventManager.Event2_9();
         }
 
         else if (day == 2 && turn == 12){
@@ -351,7 +355,7 @@ public class Turn_Manager : MonoBehaviour
         }
 
         else if (day == 2 && turn == 14){
-            eventManager.StartCoroutine(eventManager.Event2_14());
+            StartCoroutine(eventManager.Event2_14());
             
         }
         else if (day == 2 && turn == 16)
