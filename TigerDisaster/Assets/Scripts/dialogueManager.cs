@@ -32,7 +32,7 @@ public class dialogueManager : MonoBehaviour
     {
         if (isTyping) return;                // 타이핑 중이면 중복 호출 방지
         convoPanel.SetActive(true);
-
+        nextDialogueButton.interactable = false;
         // 현재 대화 리스트에서 인덱스 확인
         if (dialogueIndex < currentDialogue.Count)
         {
@@ -48,7 +48,7 @@ public class dialogueManager : MonoBehaviour
     // 다음 대화 버튼 클릭 시 호출되는 메서드
     public void OnNextDialogueButtonClicked()
     {
-        nextDialogueButton.interactable = false;
+        
         if (!isTyping)                       // 타이핑 중이 아닐 때만 인덱스를 증가
         {
             dialogueIndex++;                 // 다음 대화 인덱스로 이동
