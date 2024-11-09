@@ -20,7 +20,7 @@ public class Turn_Manager : MonoBehaviour
     private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
 
-    
+    private SceneMove sceneMove;
     private EventManager eventManager;
 
     // public List<GameObject> panels;
@@ -40,6 +40,7 @@ public class Turn_Manager : MonoBehaviour
     {
 
         eventManager = FindObjectOfType<EventManager>();
+        sceneMove = FindObjectOfType<SceneMove>();
         bgSpriter = bg.GetComponent<SpriteRenderer>();
         camera = Camera.main;
     }
@@ -335,8 +336,15 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event2_17();
         }
 
-    }
+        if (day == 3 && turn == 5){
+            sceneMove.ChangeScene();
+        }
 
+
+
+
+    }
+    
 }
 
 
