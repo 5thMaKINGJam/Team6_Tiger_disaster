@@ -254,10 +254,7 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event0_3();
         }
 
-        if (day == 0 && turn == 4)
-        {
-            eventManager.Event0_4();
-        }
+        
 
 
 
@@ -333,6 +330,15 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event1_14();
         }
 
+         if (day == 2 && turn == 5)
+        {
+            eventManager.Event2_05();
+        }
+
+     
+
+
+
         if (day == 2 && turn == 7){
             eventManager.StartCoroutine(eventManager.Event2_7());
         }
@@ -352,6 +358,18 @@ public class Turn_Manager : MonoBehaviour
         if (day == 2 && turn == 14){
             eventManager.StartCoroutine(eventManager.Event2_14());
             
+        }
+
+        if (day == 2 && turn == 16)
+        {
+            eventManager.Event2_16();
+
+        }
+
+        if (day == 2 && turn == 17)
+        {
+            eventManager.Event2_17();
+
         }
 
 

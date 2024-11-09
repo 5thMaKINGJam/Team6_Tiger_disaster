@@ -31,6 +31,7 @@ public class EventManager : MonoBehaviour
     public GameObject neckMonster2;
     public GameObject neckMonster3;
     public GameObject neckFace;
+    public GameObject Face;
     public TMP_Text dialogueText;  // TextMeshPro 텍스트 컴포넌트
 
 
@@ -185,7 +186,7 @@ public class EventManager : MonoBehaviour
         btn.interactable = true;
     }
 
-    public void Event1_3() {
+    public void Event1_03() {
 
         if (!isInEvent)
         {
@@ -419,6 +420,20 @@ public class EventManager : MonoBehaviour
         dialogueText.text = "";
         neckFace.SetActive(false);
         btn.interactable = true;
+    }
+
+    public void Event2_16()
+    {
+        Debug.Log("이벤트 2-16");
+        
+        Face.SetActive(true);
+    }
+
+    public void Event2_17()
+    {
+        Debug.Log("이벤트 2-17");
+
+        Face.SetActive(false);
     }
 
     public IEnumerator Typing(string message){
