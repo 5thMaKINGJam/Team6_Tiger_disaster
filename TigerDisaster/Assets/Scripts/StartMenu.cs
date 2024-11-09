@@ -11,7 +11,7 @@ public class StartMenu : MonoBehaviour
     public void Start()
     {
         // 이전 기록 확인 후 이어하기 버튼 활성화/비활성화
-        if (PlayerPrefs.HasKey("SaveData")){
+        if (PlayerPrefs.GetInt("SaveData") == 1){
             continueBtn.interactable = true;
         }
         else{
@@ -27,14 +27,13 @@ public class StartMenu : MonoBehaviour
 
     // 이전 기록 이어서 시작
     public void continueGame(){
-        int currentDay = PlayerPrefs.GetInt("currentDay");
-        int currentTurn = PlayerPrefs.GetInt("currentTurn");
-        Debug.Log("저장된 Day-Turn: " + currentDay + "-" + currentTurn);
         sceneMove.ChangeScene();
     }
 
     // 게임 종료 함수
     public void ExitGame(){
+        //지금까지의 Day, Turn 저장
+        SaveManager.saveData();
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #else

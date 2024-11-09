@@ -1021,7 +1021,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 428944801}
-  sceneMove: {fileID: 540618977}
 --- !u!1 &542478529
 GameObject:
   m_ObjectHideFlags: 0

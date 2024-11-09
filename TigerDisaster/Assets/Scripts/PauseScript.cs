@@ -40,9 +40,6 @@ public class PauseScript : MonoBehaviour
 
         //지금까지의 Day, Turn 저장
         SaveManager.saveData();
-        int currentDay = PlayerPrefs.GetInt("currentDay");
-        int currentTurn = PlayerPrefs.GetInt("currentTurn");
-        Debug.Log("저장된 Day-Turn: " + currentDay + "-" + currentTurn);
         Time.timeScale = 1f; // 게임 중지 해제
         SceneManager.LoadScene("startMenu");
     }

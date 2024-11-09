@@ -628,9 +628,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1301362504}
-        m_TargetAssemblyTypeName: SceneMove, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 1301362503}
+        m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
+        m_MethodName: newGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1316,7 +1316,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1301362503}
         m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
-        m_MethodName: ContinueGame
+        m_MethodName: continueGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
