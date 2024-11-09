@@ -34,12 +34,15 @@ public class EventManager : MonoBehaviour
     public Sprite[] monsterSprite;  // 바뀔 귀신의 이미지
     public bool isInEvent = false;
 
+    void Awake(){
+        //dialogueManager = FindObjectOfType<//dialogueManager>();
+    }
+
     void Start()
     {
-        dialogueManager = FindObjectOfType<dialogueManager>();
+        
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
-        StartCoroutine(Event2_14());
     }
 
     void Update() 
@@ -60,12 +63,13 @@ public class EventManager : MonoBehaviour
 
     //벽귀신 등장 이벤트
     public void Event0_10(){
+        Debug.Log("이벤트 0-10");
         wallMonseter1.SetActive(true);
     }
 
     //벽귀신 뒤로 사라지는 이벤트
     public IEnumerator Event0_11(){
-
+        Debug.Log("이벤트 0-11");
         if (!isInEvent){
             isInEvent = true;
             btn.interactable = false;
@@ -100,9 +104,10 @@ public class EventManager : MonoBehaviour
 
     //홍살문 등장 하고 다이얼로그
     public void Event0_15(){
+        Debug.Log("이벤트 0-15");
         //다이얼로그 호출
-        dialogueManager.SelectDialogue(1);
-        dialogueManager.DisplayCurrentDialogue();
+        //dialogueManager.SelectDialogue(1);
+        //dialogueManager.DisplayCurrentDialogue();
     }
 
     //목귀신 흔들리는 이벤트
@@ -142,15 +147,19 @@ public class EventManager : MonoBehaviour
             // 카메라 위치 복원
             mainCamera.transform.position = originalCameraPos;
             neckMonster1.SetActive(false);
+            
         }
         isInEvent = false;
+        btn.interactable = true;
     }
 
     //다리 귀신 흔들리는 이벤트
     public IEnumerator Event1_6()
     {   
+        Debug.Log("이벤트 1-6");
         if (!isInEvent){
             isInEvent = true;
+            btn.interactable = false;
             legMonster.SetActive(true);
             // 원래 위치 저장
             Vector3 originalPosition = legMonster.transform.position;
@@ -187,79 +196,107 @@ public class EventManager : MonoBehaviour
             // 부드럽게 아래로 떨어지는 효과
             float fallSpeed = 100f;  // 떨어지는 속도
             legMonster.transform.position = new Vector3 (0, 12, 0);
-            while (legMonster.transform.position.y > -Screen.height)
+            while (legMonster.transform.position.y > -12f)
             {
                 legMonster.transform.position += Vector3.down * fallSpeed * Time.deltaTime;
                 yield return null;
             }
         }
         isInEvent = false;
+        btn.interactable = true;
     }
 
     //탈귀신 등장 작은 버전
     public void Event1_9(){
+        Debug.Log("이벤트 1-9");
         maskMonseter1.SetActive(true);
     }
 
     //탈귀신 등장 큰 버전
     public void Event1_10(){
+        Debug.Log("이벤트 1-10");
         maskMonseter1.SetActive(false);
         maskMonseter2.SetActive(true);
     }
 
     //탈귀신 쫒아옴
     public void Event1_11(){
+        Debug.Log("이벤트 1-11");
         maskMonseter2.SetActive(false);
         //철퍽 재생
     }
     
     //탈귀신 쫒아옴
     public void Event1_12(){
+        Debug.Log("이벤트 1-12");
         //철퍽 철퍽 재생
+        
     }
 
     //탈귀신 쫒아옴
     public void Event1_13(){
+        Debug.Log("이벤트 1-13");
         //철퍽 철퍽 철퍽 재생
     }
 
     //홍살문 등장 후 다이얼로그
     public void Event1_14(){
+        Debug.Log("이벤트 1-14");
         //다이얼로그 호출
-        dialogueManager.SelectDialogue(2);
-        dialogueManager.DisplayCurrentDialogue();
+        //dialogueManager.SelectDialogue(2);
+        //dialogueManager.DisplayCurrentDialogue();
     }
 
     //절벽 등장, 2초후 다이얼로그 등장
     public IEnumerator Event2_7(){
+        Debug.Log("이벤트 2-7");
+        btn.interactable = false;
         // 2초 대기
         yield return new WaitForSeconds(2f);
         //다이얼로그 호출
-        dialogueManager.SelectDialogue(3);
-        dialogueManager.DisplayCurrentDialogue();
+        //dialogueManager.SelectDialogue(3);
+        //dialogueManager.DisplayCurrentDialogue();
         //페이드인아웃
+
+        btn.interactable = true;
+
     }
 
-    public void Event2_8(){
+    //탈귀신 다리만 등장
+    public IEnumerator Event2_8(){
+        Debug.Log("이벤트 2-8");
+        btn.interactable = false;
         maskLeg.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        //웃는 소리 출력
+        //철퍽 소리 출력
+        //페이드인아웃 처리
+
+        maskLeg.SetActive(false);
+        btn.interactable = true;
     }
 
     //목귀신 기립 작은 버전
     public void Event2_12(){
+        Debug.Log("이벤트 2-12");
         neckMonster2.SetActive(true);
     }
 
     //목귀신 기립 큰 버전
     public void Event2_13(){
+        Debug.Log("이벤트 2-13");
         neckMonster2.SetActive(false);
         neckMonster3.SetActive(true);
         //다이얼로그 불러와야함
-        dialogueManager.SelectDialogue(4);
-        dialogueManager.DisplayCurrentDialogue();
+        //dialogueManager.SelectDialogue(4);
+        //dialogueManager.DisplayCurrentDialogue();
     }
 
     //목 귀신 얼굴 내려오는 이벤트
     public IEnumerator Event2_14(){
+        Debug.Log("이벤트 2-14");
+        neckMonster3.SetActive(false);
+        btn.interactable = false;
         neckFace.SetActive(true);
         Vector3 startPosition = new Vector3(0.5f, 7.2f, 0);   // 처음 위치 (씬 밖)
         Vector3 endPosition = new Vector3(0, 2.85f, 0);     // 최종 위치 (씬 안)
@@ -287,10 +324,13 @@ public class EventManager : MonoBehaviour
         yield return new WaitForSeconds(4f);
         dialogueText.text = "";
         neckFace.SetActive(false);
+        btn.interactable = true;
     }
 
     public void Event2_17(){
+        Debug.Log("이벤트 2-17");
         //장승 비명 재생
+        
     }
 
     public IEnumerator Typing(string message){
@@ -305,6 +345,7 @@ public class EventManager : MonoBehaviour
     }
 
     public void Event3_1(){
+        Debug.Log("이벤트 3-1");
         //페이드인 처리
     }
 }
