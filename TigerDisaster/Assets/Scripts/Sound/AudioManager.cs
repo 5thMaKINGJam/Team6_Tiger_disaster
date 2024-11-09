@@ -149,4 +149,15 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.loop = isLoop; // Loop 설정
     }
+    public void MuteAllMusic()
+    {
+        musicSource.mute = true;  // BGM 뮤트
+        sfxSource.mute = true;    // SFX 뮤트
+    }
+    public void UnmuteAllMusic()
+    {
+        musicSource.mute = false;  // BGM 음소거 해제
+        sfxSource.mute = false;    // SFX 음소거 해제
+    }
+
 }
