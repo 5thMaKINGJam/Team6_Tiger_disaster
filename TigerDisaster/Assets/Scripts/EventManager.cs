@@ -6,25 +6,25 @@ using UnityEngine.UI;
 public class EventManager : MonoBehaviour
 {
     public Camera mainCamera;  // 메인 카메라
+    public Button btn;
     private Vector3 originalCameraPos;
     public GameObject wallMonseter1;
     public GameObject wallMonseter2;
     public GameObject neckMonster;
     public GameObject legMonster;
     public Sprite[] monsterSprite;  // 바뀔 귀신의 이미지
-
     public bool isInEvent = false;
 
     void Start()
     {
         originalCameraPos = new Vector3(0, 0, -10);
-
+        isInEvent = false;
+        StartCoroutine(Event1_2());
     }
 
-    void Update() {
-        // if(Input.GetMouseButton(0) && !isInEvent){
-        //     StartCoroutine(Event_3());
-        // }
+    void Update() 
+    {
+
     }
     public IEnumerator CameraShake()
     {
@@ -42,15 +42,16 @@ public class EventManager : MonoBehaviour
     }
 
     //벽귀신 등장 이벤트
-    public void Event_1(){
+    public void Event0_9(){
         wallMonseter1.SetActive(true);
     }
 
     //벽귀신 뒤로 사라지는 이벤트
-    public IEnumerator Event_2(){
+    public IEnumerator Event0_10(){
 
         if (!isInEvent){
             isInEvent = true;
+            btn.interactable = false;
             wallMonseter1.SetActive(false);
             wallMonseter2.SetActive(true);
             float slideDuration = 2.0f;  // 이동 시간
@@ -74,31 +75,47 @@ public class EventManager : MonoBehaviour
             wallMonseter2.transform.position = endPosition;
         }
         isInEvent = false;
+        wallMonseter2.SetActive(false);
+        btn.interactable = true;
     }
 
     //목귀신 흔들리는 이벤트
-    public IEnumerator Event_3()
+    public IEnumerator Event1_2()
     {   
+        Debug.Log("이벤트 1-2");
         if (!isInEvent){
             isInEvent = true;
+            btn.interactable = false;
+            //목귀신 등장후 1.5초 기다림
             neckMonster.SetActive(true);
-            SpriteRenderer mstSpriter = neckMonster.GetComponent<SpriteRenderer>();
-            mstSpriter.sprite = monsterSprite[1];
-            // 카메라 흔들기
-            float shakeDuration = 0.5f;
-            float shakeIntensity = 0.2f;
+            yield return new WaitForSeconds(1.5f);
 
+            //2초후 카메라 무빙 시작
+            //2초 동안 카메라 흔들기 
+            float shakeDuration = 2f;
+            float shakeIntensity = 0.2f;
             for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
             {
                 float offsetX = Random.Range(-1f, 1f) * shakeIntensity;
                 float offsetY = Random.Range(-1f, 1f) * shakeIntensity;
                 mainCamera.transform.position = originalCameraPos + new Vector3(offsetX, offsetY, 0);
-
+                yield return null;
+            }
+            //2초후 날 쳐다보는 목 귀신 이미지로 변경 (0.5초동안 지속)
+            SpriteRenderer mstSpriter = neckMonster.GetComponent<SpriteRenderer>();
+            mstSpriter.sprite = monsterSprite[0];
+            shakeDuration = 0.5f;
+            for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
+            {
+                float offsetX = Random.Range(-1f, 1f) * shakeIntensity;
+                float offsetY = Random.Range(-1f, 1f) * shakeIntensity;
+                mainCamera.transform.position = originalCameraPos + new Vector3(offsetX, offsetY, 0);
                 yield return null;
             }
 
             // 카메라 위치 복원
             mainCamera.transform.position = originalCameraPos;
+            neckMonster.SetActive(false);
         }
         isInEvent = false;
     }
