@@ -1,31 +1,28 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneMove : MonoBehaviour
+public class SceneMove : MonoBehaviour // Make sure 'public' is only applied to the class and its members
 {
-    public string targetScene;
+    public string targetScene; // Valid 'public' usage on a field
     private FadeController fadeController;
 
     public void ChangeScene()
     {
-        // 현재 씬 이름을 PlayerPrefs에 저장
         string currentSceneName = SceneManager.GetActiveScene().name;
         PlayerPrefs.SetString("PreviousScene", currentSceneName);
         Debug.Log("이전 씬: " + PlayerPrefs.GetString("PreviousScene"));
 
-        // 페이드인&아웃
         fadeController = FindObjectOfType<FadeController>();
         if (fadeController != null)
         {
-            fadeController.RegisterCallback(OnFadeOutComplete); // 페이드아웃 후 진행할 액션 등록
-            fadeController.FadeOut(); // FadeOut 호출
+            fadeController.RegisterCallback(OnFadeOutComplete); // Register callback for after FadeOut completes
+            fadeController.FadeOut(targetScene); // Pass targetScene as the argument
         }
-        //SceneManager.LoadScene(targetScene); //해당 씬으로 이동
     }
 
     void OnFadeOutComplete()
     {
         Debug.Log("Fade Out이 완료되어 씬을 이동합니다.");
-        SceneManager.LoadScene(targetScene); //해당 씬으로 이동
+        SceneManager.LoadScene(targetScene); // Move to the target scene
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class EventManager : MonoBehaviour
 {
@@ -45,21 +46,15 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
-
-        GameObject deer = GameObject.Find("사슴"); // "Deer"는 사슴 객체의 이름
-        if (deer != null)
-        {
-            deerAnimator = deer.GetComponent<Animator>(); // Animator 컴포넌트 가져오기
-        }
     }
 
     void Update() 
     {
 
     }
+    
     public IEnumerator CameraShake(float shakeDuration, float shakeIntensity)
     {
         for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
@@ -72,24 +67,16 @@ public class EventManager : MonoBehaviour
         mainCamera.transform.position = originalCameraPos;
     }
 
-    public void Event0_3() {
+    public void Event0_3()
+    {
         if (!isInEvent)
         {
             isInEvent = true;
             btn.interactable = false;
             Dear.SetActive(true);
             Invoke("DeactivateND", 1f);
-
-
         }
-
-
-
-
     }
- 
-
- 
 
     //벽귀신 등장 이벤트
     public void Event0_10(){
@@ -445,8 +432,8 @@ public class EventManager : MonoBehaviour
             dialogueText.text += message[i];  // 한 글자씩 추가
             if (message[i] != ' ')
             {
-                Debug.Log(message[i]);
                 AudioManager.Instance.PlaySFX("WordImpact");
+                mainCamera.transform.DOShakePosition(1f, new Vector3(1, 0, 0), 5, 0, false, true, ShakeRandomnessMode.Full);
             }
             yield return new WaitForSeconds(typingSpeed);  // 지연 시간 설정
         }
