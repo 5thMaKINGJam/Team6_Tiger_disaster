@@ -121,9 +121,9 @@ public class EventManager : MonoBehaviour
             neckMonster1.SetActive(true);
             yield return new WaitForSeconds(1.5f);
 
-            //2초후 카메라 무빙 시작
-            //2초 동안 카메라 흔들기 
-            float shakeDuration = 2f;
+            //1.5초후 카메라 무빙 시작
+            //3초 동안 카메라 흔들기 
+            float shakeDuration = 3f;
             float shakeIntensity = 0.2f;
             for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
             {
@@ -194,6 +194,7 @@ public class EventManager : MonoBehaviour
             StartCoroutine(CameraShake(0.5f, 0.5f));
 
             // 부드럽게 아래로 떨어지는 효과
+            AudioManager.Instance.PlaySFX("BodyDump");
             float fallSpeed = 100f;  // 떨어지는 속도
             legMonster.transform.position = new Vector3 (0, 12, 0);
             while (legMonster.transform.position.y > -12f)
@@ -224,19 +225,29 @@ public class EventManager : MonoBehaviour
         Debug.Log("이벤트 1-11");
         maskMonseter2.SetActive(false);
         //철퍽 재생
+        AudioManager.Instance.PlaySFX("TalGhostWalking");
     }
-    
+
     //탈귀신 쫒아옴
     public void Event1_12(){
         Debug.Log("이벤트 1-12");
-        //철퍽 철퍽 재생
-        
+        AudioManager.Instance.PlaySFX("TalGhostWalking");
+        Invoke("PlaySound", 0.4f);
     }
 
     //탈귀신 쫒아옴
     public void Event1_13(){
         Debug.Log("이벤트 1-13");
         //철퍽 철퍽 철퍽 재생
+        AudioManager.Instance.PlaySFX("TalGhostWalking");
+        Invoke("PlaySound", 0.2f);
+        Invoke("PlaySound", 0.2f);
+
+
+    }
+    void PlaySound()
+    {
+        AudioManager.Instance.PlaySFX("TalGhostWalking");
     }
 
     //홍살문 등장 후 다이얼로그
@@ -267,12 +278,16 @@ public class EventManager : MonoBehaviour
         Debug.Log("이벤트 2-8");
         btn.interactable = false;
         maskLeg.SetActive(true);
-        yield return new WaitForSeconds(1f);
         //웃는 소리 출력
-        //철퍽 소리 출력
+        AudioManager.Instance.PlaySFX("TalGhostLaugh");
+        yield return new WaitForSeconds(2f);
+        //철
         //페이드인아웃 처리
 
         maskLeg.SetActive(false);
+        AudioManager.Instance.PlaySFX("TalGhostWalking");
+        Invoke("PlaySound", 0.4f);
+
         btn.interactable = true;
     }
 
@@ -295,6 +310,7 @@ public class EventManager : MonoBehaviour
     //목 귀신 얼굴 내려오는 이벤트
     public IEnumerator Event2_14(){
         Debug.Log("이벤트 2-14");
+        AudioManager.Instance.PlaySFX("NeckGhostFace");
         neckMonster3.SetActive(false);
         btn.interactable = false;
         neckFace.SetActive(true);
@@ -330,6 +346,8 @@ public class EventManager : MonoBehaviour
     public void Event2_17(){
         Debug.Log("이벤트 2-17");
         //장승 비명 재생
+        AudioManager.Instance.PlaySFX("Scream");
+        AudioManager.Instance.PlayMusic("3bgm");
         
     }
 
