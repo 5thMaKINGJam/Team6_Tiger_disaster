@@ -19,7 +19,6 @@ public class EventManager : MonoBehaviour
     {
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
-        StartCoroutine(Event1_2());
     }
 
     void Update() 
