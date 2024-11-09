@@ -1,29 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
-public class Ending : MonoBehaviour
+using UnityEngine.SceneManagement;
+public class ending : MonoBehaviour
 {
-    public FadeController fadeController;
-
+    private FadeController fadeController;
+    // Start is called before the first frame update
     void Start()
     {
-        if (fadeController == null)
+        // 페이드인&아웃
+        fadeController = FindObjectOfType<FadeController>();
+        if (fadeController != null)
         {
-            Debug.LogError("FadeController component not assigned.");
-            return;
+            // fadeController.RegisterCallback(OnFadeOutComplete); // 페이드아웃 후 진행할 액션 등록
+            fadeController.FadeOut(); // FadeOut 호출
         }
-
-        // Register the OnFadeOutComplete method as the callback for fade out completion
-        fadeController.RegisterCallback(OnFadeOutComplete);
-        
-        // Start the fade out process
-        fadeController.FadeOut();
     }
 
-    private void OnFadeOutComplete()
+    // Update is called once per frame
+    void Update()
     {
-        Debug.Log("Fade-out is complete.");
         
-        // Start fade in after fade out is complete
-        fadeController.FadeIn();
     }
+
+    // void OnFadeOutComplete()
+    // {
+    //     Debug.Log("Fade Out이 완료되어 씬을 이동합니다.");
+    //     SceneManager.LoadScene(targetScene); //해당 씬으로 이동
+    // }
+
+    // public void ChangeSceneAfterPause()
+    // {
+    //     Time.timeScale = 1f;
+
+    //     ChangeScene();
+    // }
 }
