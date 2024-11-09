@@ -35,7 +35,6 @@ public class dialogueManager : MonoBehaviour
         if (isTyping) return;                // 타이핑 중이면 중복 호출 방지
         convoPanel.SetActive(true);
         nextDialogueButton.interactable = false;
-        Debug.Log(currentDialogue.Count);
         // 현재 대화 리스트에서 인덱스 확인
         if (dialogueIndex < currentDialogue.Count)
         {
@@ -58,6 +57,7 @@ public class dialogueManager : MonoBehaviour
             DisplayCurrentDialogue();        // 다음 대화 출력
         }
         else{
+            Debug.Log("엔드 호출");
             EndDialogue();
         }
     }
@@ -105,14 +105,8 @@ public class dialogueManager : MonoBehaviour
         convoPanel.SetActive(false);
 
         //만약 엔딩 씬일경우
-        if(currentDialogue == ending){
-            StartCoroutine(goToStartMenu());
-        }
-    }
-
-    IEnumerator goToStartMenu(){
-        StartCoroutine(fadeController.CoFadeOut());
-        yield return new WaitForSeconds(5f);
-        sceneMove.ChangeScene();
+        if (currentDialogue == ending) {
+            sceneMove.ChangeScene();
+        }   
     }
 }

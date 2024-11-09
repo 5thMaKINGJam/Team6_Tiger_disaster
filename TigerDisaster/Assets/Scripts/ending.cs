@@ -7,18 +7,20 @@ public class ending : MonoBehaviour
     private FadeController fadeController;
     private dialogueManager dialogueManager;
     private SceneMove sceneMove;
-    private int count;
     void Start()
     {
         fadeController = FindObjectOfType<FadeController>();
         dialogueManager = FindObjectOfType<dialogueManager>();
-        sceneMove = FindObjectOfType<SceneMove>();
-
-        count = 0;
 
         if (fadeController != null)
         {
-            fadeController.StartCoroutine(fadeController.CoFadeIn());
+            StartCoroutine(endDialogue());
         }
     }
+    IEnumerator endDialogue(){
+        yield return new WaitForSeconds(3f);
+        dialogueManager.SelectDialogue(6);
+        dialogueManager.DisplayCurrentDialogue();
+    }
+    
 }
