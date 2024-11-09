@@ -49,7 +49,6 @@ public class Turn_Manager : MonoBehaviour
     }
 
     void Start(){
-    
         dayAndTurn = SaveManager.getDayAndTurn();
         currentday = dayAndTurn.Item1;
         currentnum = dayAndTurn.Item2;
@@ -272,7 +271,17 @@ public class Turn_Manager : MonoBehaviour
             eventManager.StartCoroutine(eventManager.Event0_11());
         }
 
-        else if (day == 0 && turn == 15){
+        if(day == 0 && turn == 13)
+        {
+            eventManager.Event0_13();
+        }
+
+        if (day == 0 && turn == 14)
+        {
+            eventManager.Event0_14();
+        }
+
+        if (day == 0 && turn == 15){
             eventManager.Event0_15();
         }
 

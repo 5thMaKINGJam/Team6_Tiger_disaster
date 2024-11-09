@@ -32,8 +32,12 @@ public class EventManager : MonoBehaviour
     public GameObject neckMonster2;
     public GameObject neckMonster3;
     public GameObject neckFace;
+
+    public GameObject[] footPrint;
+
     public TMP_Text dialogueText;  // TextMeshPro 텍스트 컴포넌트
 
+    private Sequence mySequence;
 
     //기타
     public Sprite[] monsterSprite;  // 바뀔 귀신의 이미지
@@ -47,6 +51,12 @@ public class EventManager : MonoBehaviour
     {
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
+
+        GameObject deer = GameObject.Find("사슴"); // "Deer"는 사슴 객체의 이름
+        if (deer != null)
+        {
+            deerAnimator = deer.GetComponent<Animator>(); // Animator 컴포넌트 가져오기
+        }
     }
 
     void Update() 
@@ -119,6 +129,36 @@ public class EventManager : MonoBehaviour
         wallMonseter2.SetActive(false);
         btn.interactable = true;
         wall.SetActive(false);
+    }
+
+ 
+    // 시퀀스를 재생하는 메서드
+    public void Event0_13()
+    {
+        // 이전 시퀀스를 정리하고 새 시퀀스 생성
+        if (mySequence != null) mySequence.Kill();
+
+        mySequence = DOTween.Sequence();
+        mySequence.OnStart(() => {
+            btn.interactable = false;
+
+        }).AppendCallback(() => { footPrint[0].SetActive(true); AudioManager.Instance.PlaySFX("TalGhostWalking"); })  // 객체 활성화
+        .AppendInterval(1f)                         // 2초 동안 유지
+        .AppendCallback(() => { footPrint[1].SetActive(true); AudioManager.Instance.PlaySFX("TalGhostWalking"); }) // 객체 활성화
+        .AppendInterval(1f)
+        .AppendCallback(() => { footPrint[2].SetActive(true); AudioManager.Instance.PlaySFX("TalGhostWalking"); }) // 객체 활성화
+        .OnComplete(() => {
+            btn.interactable = true;
+        });
+
+        mySequence.Restart(); // 시퀀스를 다시 시작
+    }
+
+    public void Event0_14()
+    {
+        footPrint[0].SetActive(false);
+        footPrint[1].SetActive(false);
+        footPrint[2].SetActive(false);
     }
 
     //홍살문 등장 하고 다이얼로그
