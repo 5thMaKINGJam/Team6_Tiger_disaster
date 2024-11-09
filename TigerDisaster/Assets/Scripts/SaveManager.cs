@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-public class TurnManager : MonoBehaviour
+public class SaveManager : MonoBehaviour
 {
     public static int currentDay;
     public static int currentTurn;
