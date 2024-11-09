@@ -19,6 +19,7 @@ public class Turn_Manager : MonoBehaviour
     public Image circularImage;
     private float duration = 0.5f;  // 슬라이더가 1에서 0으로 줄어드는 시간
     public GameObject[] Ghosts;
+
     
     private EventManager eventManager;
 
@@ -26,8 +27,8 @@ public class Turn_Manager : MonoBehaviour
     private List<int> currentDayList;
     private List<int> day0 = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0 };
     private List<int> day1 = new List<int> { 0, 0, 0,0,0,0,0,0 ,0,1,2,0,0,0,0};
-    private List<int> day2 = new List<int> { 6, 6, 4,5,6,6,6,3,6,6,4 };
-    private List<int> day3 = new List<int> { 0, 0, 0, 0, 0, 6, 6, 3, 6, 6, 4 };
+    private List<int> day2 = new List<int> { 6, 6, 4,5,6,6,6,3,6,6,4,5,6,6,6,6,6,6,6 };
+    private List<int> day3 = new List<int> { 7,7,7,7,7,7 };
 
 
 
@@ -65,6 +66,9 @@ public class Turn_Manager : MonoBehaviour
         else if (currentday == 2)
         {
             currentDayList = day2;
+        }
+        else if (currentday == 3) {
+            currentDayList = day3;
         }
         else
         {
@@ -116,7 +120,8 @@ public class Turn_Manager : MonoBehaviour
         {
             bgSpriter.sprite = BackGroundSprite[6];
         }
-        else if (currentDayList[currentnum] == 6) { //2일차 기본
+        else if (currentDayList[currentnum] == 6)
+        { //2일차 기본
             if (bgSpriter.sprite == BackGroundSprite[7])
             {
                 bgSpriter.sprite = BackGroundSprite[8];
@@ -125,9 +130,19 @@ public class Turn_Manager : MonoBehaviour
             {
                 bgSpriter.sprite = BackGroundSprite[7];
             }
-        } 
+        }
+        else if (currentDayList[currentnum] == 7) { //마지막날 기본1,2
+            if (bgSpriter.sprite == BackGroundSprite[9])
+            {
+                bgSpriter.sprite = BackGroundSprite[10];
+            }
+            else
+            {
+                bgSpriter.sprite = BackGroundSprite[9];
+            }
+        }
 
-        //정리 기본1,2 , 꺽인길 1,2, 절벽 ,2일차 꺽인길 1,2, 2일차 기본 1,2,
+        //정리 기본1,2 , 꺽인길 1,2, 절벽 ,2일차 꺽인길 1,2, 2일차 기본 1,2, 마지막날 기본1,2
         currentnum++;
         
 
