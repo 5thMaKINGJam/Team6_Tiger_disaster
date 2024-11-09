@@ -74,7 +74,7 @@ public class Panel_Move : MonoBehaviour
 
 
         }
-        TurnManager.setDayAndTurn();
+        SaveManager.setDayAndTurn();
 
 
     }
@@ -113,7 +113,7 @@ public class Panel_Move : MonoBehaviour
 
         RectTransform rt = Ghosts[0].GetComponent<RectTransform>();
 
-        Tuple<int, int> dayAndTurn = TurnManager.getDayAndTurn();
+        Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
 
 
 
