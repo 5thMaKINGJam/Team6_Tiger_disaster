@@ -31,7 +31,7 @@ public class dialogueManager : MonoBehaviour
     }
 
     // 현재 대화 출력 메서드 - 인덱스를 증가시키지 않고 현재 대화만 표시
-    private void DisplayCurrentDialogue()
+    public void DisplayCurrentDialogue()
     {
         if (isTyping) return;                // 타이핑 중이면 중복 호출 방지
 
@@ -58,7 +58,7 @@ public class dialogueManager : MonoBehaviour
     }
 
     // 대화 셋 선택에 따라 해당 리스트를 현재 대화로 설정하는 메서드
-    private void SelectDialogue(int dialogueSet)
+    public void SelectDialogue(int dialogueSet)
     {
         switch (dialogueSet)
         {
