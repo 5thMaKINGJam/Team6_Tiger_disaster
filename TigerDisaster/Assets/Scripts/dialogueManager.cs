@@ -9,12 +9,12 @@ public class dialogueManager : MonoBehaviour
     public GameObject backgroundBox;         // 대사 배경 네모 상자
     public Button nextDialogueButton;        // 다음 대화로 넘어가는 버튼
 
-    private List<string> tuto = new List<string> { "1", "2" };
-    private List<string> dialogues1 = new List<string> { "2", "3" };
-    private List<string> dialogues2 = new List<string> { "4", "5" };
-    private List<string> dialogues3 = new List<string>(); // 빈 리스트 예시
-    private List<string> dialogues4 = new List<string>(); // 빈 리스트 예시
-    private List<string> ending = new List<string>();
+    private List<string> tuto = new List<string> { "으으... 여기가 어디지. 분명 난 호랑이한테 잡혀갔는데...", "얼른 산 아래로 내려가야겠다." };
+    private List<string> dialogues1 = new List<string> { "어...? 분명 왔던 길 아닌가?", "이상하다..." };
+    private List<string> dialogues2 = new List<string> { "여기까지는 쫓아오지 못하는 것 같다..." };
+    private List<string> dialogues3 = new List<string> { "절벽이다... 길을 잘못들었나?", "돌아가야겠다." };
+    private List<string> dialogues4 = new List<string> { "(그냥 옆으로 지나가야겠다.)" };
+    private List<string> ending = new List<string> { "옆 동네 청년이 글쎄 호랑이한테 잡혀갔대.", "일주일이 지났는데도 안 돌아온 걸 봐서는 이미 잡아먹힌게 틀림 없어!" ,"자네도 호환 조심하게." };
 
     private List<string> currentDialogue;    // 현재 선택된 대화 리스트
     private int dialogueIndex = 0;           // 현재 대화 인덱스
@@ -23,7 +23,7 @@ public class dialogueManager : MonoBehaviour
     private void Start()
     {
         // 초기 시작 시 대화 셋 2를 표시
-        SelectDialogue(2);
+        SelectDialogue(5);
         DisplayCurrentDialogue();
 
         // 버튼 클릭 시 다음 대화로 넘어가도록 이벤트 추가
