@@ -49,19 +49,15 @@ public class Turn_Manager : MonoBehaviour
         bgSpriter = bg.GetComponent<SpriteRenderer>();
         camera = Camera.main;
         originalPosition = camera.transform.position;
+    }
+
+    void Start(){
+        SaveManager.initDayAndTurn();
         Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
         currentday = dayAndTurn.Item1;
         currentnum = dayAndTurn.Item2;
 
-        if (currentday == 0 && currentnum == 1)
-        {
-            SaveManager.setDayAndTurn(currentday, currentnum);
-        }
-
-
     }
-
-
     public void ShowPanel()
     {
     
