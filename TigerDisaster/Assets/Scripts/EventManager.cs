@@ -45,22 +45,15 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
-
-        GameObject deer = GameObject.Find("사슴"); // "Deer"는 사슴 객체의 이름
-        if (deer != null)
-        {
-            deerAnimator = deer.GetComponent<Animator>(); // Animator 컴포넌트 가져오기
-        }
-        StartCoroutine(Event2_14());
     }
 
     void Update() 
     {
 
     }
+    
     public IEnumerator CameraShake(float shakeDuration, float shakeIntensity)
     {
         for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
@@ -81,12 +74,8 @@ public class EventManager : MonoBehaviour
             btn.interactable = false;
             Dear.SetActive(true);
             Invoke("DeactivateND", 1f);
-
-
         }
     }
-
- 
 
     //벽귀신 등장 이벤트
     public void Event0_10(){

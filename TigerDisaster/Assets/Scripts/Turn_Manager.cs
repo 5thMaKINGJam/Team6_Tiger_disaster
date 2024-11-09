@@ -7,7 +7,6 @@ using System;
 
 public class Turn_Manager : MonoBehaviour
 {
-  
     public Button button;
     public GameObject circularImageObject;
     public GameObject bg;
@@ -20,7 +19,7 @@ public class Turn_Manager : MonoBehaviour
     public Image circularImage;
     private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
-
+    RectTransform rt;
     private SceneMove sceneMove;
     private int currentnum = 1;
     private int currentday = 0;
@@ -34,10 +33,7 @@ public class Turn_Manager : MonoBehaviour
     private List<int> day1 = new List<int> { 0, 0, 0,0,0,0,0,0 ,0,1,2,0,0,0,0};
     private List<int> day2 = new List<int> { 6, 6, 4,5,6,6,6,3,6,6,4,5,6,6,6,6,6,6,6 };
     private List<int> day3 = new List<int> { 7,7,7,7,7,7 };
-
     private Camera camera;
-
-
     private Vector3 originalPosition;
 
     Tuple<int, int> dayAndTurn;
@@ -57,13 +53,14 @@ public class Turn_Manager : MonoBehaviour
         dayAndTurn = SaveManager.getDayAndTurn();
         currentday = dayAndTurn.Item1;
         currentnum = dayAndTurn.Item2;
+        Debug.Log("현재 일차-현재 턴: " + currentday + "-" + currentnum);
+
+        rt = Ghosts[0].GetComponent<RectTransform>();
+        ShowPanel();
     }
     public void ShowPanel()
     {
-    
-
-        AppearImage();
-
+        triggerEvent();
         SaveManager.setDayAndTurn(currentday, currentnum);
         if (currentday == 0)
         {
@@ -238,14 +235,9 @@ public class Turn_Manager : MonoBehaviour
     {
         StartCoroutine(CameraShake());
         AudioManager.Instance.PlaySFX("PlayerWalking");
-
     }
 
-    void AppearImage() {
-
-        RectTransform rt = Ghosts[0].GetComponent<RectTransform>();
-
-        // Tuple<int, int> dayAndTurn = SaveManager.getDayAndTurn();
+    void triggerEvent() {
 
         int day = currentday;
         int turn = currentnum;
@@ -253,120 +245,112 @@ public class Turn_Manager : MonoBehaviour
         if (day == 0 && turn == 3) {
             eventManager.Event0_3();
         }
-
-
-        if (day == 0  && turn == 7)
+        else if (day == 0  && turn == 7)
         {
             rt.localScale = new Vector3(1f, 1f, 1f);
             Ghosts[0].SetActive(true);
         }
 
-        if (day == 0 && turn == 8)
+        else if (day == 0 && turn == 8)
         {
             rt.localScale = new Vector3(2f, 2f, 1f);
         }
 
-        if (day == 0 && turn == 9)
+        else if (day == 0 && turn == 9)
         {
             Ghosts[0].SetActive(false);
         }
 
-        if (day == 0 && turn == 10)
+        else if (day == 0 && turn == 10)
         {
             eventManager.Event0_10();
             AudioManager.Instance.PlaySFX("WallGhostAppear");
         }
 
-        if (day == 0 && turn == 11)
+        else if (day == 0 && turn == 11)
         {
             eventManager.StartCoroutine(eventManager.Event0_11());
         }
 
-        if (day == 0 && turn == 15){
+        else if (day == 0 && turn == 15){
             eventManager.Event0_15();
         }
 
-        if (day == 1 && turn == 2)
+        else if (day == 1 && turn == 2)
         {
             eventManager.StartCoroutine(eventManager.Event1_2());
             AudioManager.Instance.PlaySFX("NeckGhostHorror");
         }
 
-        if (day == 1 && turn == 6)
+        else if (day == 1 && turn == 6)
         {
             eventManager.StartCoroutine(eventManager.Event1_6());
         }
 
-        if (day == 1 && turn == 9)
+        else if (day == 1 && turn == 9)
         {
             eventManager.Event1_9();
         }
 
-        if (day == 1 && turn == 10)
+        else if (day == 1 && turn == 10)
         {
             eventManager.Event1_10();
         }
 
-        if (day == 1 && turn == 11)
+        else if (day == 1 && turn == 11)
         {
             eventManager.Event1_11();
         }
 
-        if (day == 1 && turn == 12)
+        else if (day == 1 && turn == 12)
         {
             eventManager.Event1_12();
         }
 
-        if (day == 1 && turn == 13)
+        else if (day == 1 && turn == 13)
         {
             eventManager.Event1_13();
         }
 
-        if (day == 1 && turn == 14)
+        else if (day == 1 && turn == 14)
         {
             eventManager.Event1_14();
         }
 
-        if (day == 2 && turn == 6){
+        else if (day == 2 && turn == 6){
             eventManager.StartCoroutine(eventManager.Event2_7());
         }
 
-        if (day == 2 && turn == 8){
+        else if (day == 2 && turn == 8){
             eventManager.StartCoroutine(eventManager.Event2_8());
         }
 
-        if (day == 2 && turn == 12){
+        else if (day == 2 && turn == 12){
             eventManager.Event2_12();
         }
 
-        if (day == 2 && turn == 13){
+        else if (day == 2 && turn == 13){
             eventManager.Event2_13();
         }
 
-        if (day == 2 && turn == 14){
+        else if (day == 2 && turn == 14){
             eventManager.StartCoroutine(eventManager.Event2_14());
             
         }
 
-
-        if (day == 2 && turn == 18)
+        else if (day == 2 && turn == 18)
         {
             AudioManager.Instance.PlaySFX("Scream");
             AudioManager.Instance.PlayMusic("3bgm");
         }
 
-
-        if (day == 3 && turn == 1){
+        else if (day == 3 && turn == 1){
             eventManager.Event3_1();
         }
 
-        if (day == 3 && turn == 5){
+        else if (day == 3 && turn == 5){
             sceneMove.ChangeScene();
         }
-
-
-
-
     }
     
 }
