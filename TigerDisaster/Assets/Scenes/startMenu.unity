@@ -160,8 +160,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 345.76, y: 199.4}
-  m_SizeDelta: {x: 200.93, y: 64.42}
+  m_AnchoredPosition: {x: 829.86, y: 478.58}
+  m_SizeDelta: {x: 482.25, y: 154.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7424297
 MonoBehaviour:
@@ -428,7 +428,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 799.99994, y: 449.99997}
+  m_SizeDelta: {x: 1920.08, y: 1080.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &508042372
 MonoBehaviour:
@@ -581,8 +581,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -218.17, y: -157.16}
-  m_SizeDelta: {x: 436.34, y: 127}
+  m_AnchoredPosition: {x: -523.63, y: -377.2}
+  m_SizeDelta: {x: 1047.26, y: 304.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &576804945
 MonoBehaviour:
@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1203,7 +1203,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1263,6 +1263,7 @@ GameObject:
   - component: {fileID: 1939225157}
   - component: {fileID: 1939225156}
   - component: {fileID: 1939225155}
+  - component: {fileID: 1939225159}
   m_Layer: 5
   m_Name: continue
   m_TagString: Untagged
@@ -1295,7 +1296,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.3764706}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1382,6 +1383,18 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 227.55, y: -157.43001}
-  m_SizeDelta: {x: 437.35, y: 126.46}
+  m_AnchoredPosition: {x: 546.14, y: -377.85}
+  m_SizeDelta: {x: 1049.68, y: 303.52}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1939225159
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939225154}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
