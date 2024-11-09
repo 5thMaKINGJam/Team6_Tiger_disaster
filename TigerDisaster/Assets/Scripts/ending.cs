@@ -5,30 +5,22 @@ using UnityEngine.SceneManagement;
 public class ending : MonoBehaviour
 {
     private FadeController fadeController;
+    private dialogueManager dialogueManager;
+    private SceneMove sceneMove;
     void Start()
     {
         fadeController = FindObjectOfType<FadeController>();
+        dialogueManager = FindObjectOfType<dialogueManager>();
+
         if (fadeController != null)
         {
-            fadeController.StartCoroutine(fadeController.CoFadeIn());
+            StartCoroutine(endDialogue());
         }
     }
-
-    void Update()
-    {
-        
+    IEnumerator endDialogue(){
+        yield return new WaitForSeconds(3f);
+        dialogueManager.SelectDialogue(6);
+        dialogueManager.DisplayCurrentDialogue();
     }
-
-    // void OnFadeOutComplete()
-    // {
-    //     Debug.Log("Fade Out이 완료되어 씬을 이동합니다.");
-    //     SceneManager.LoadScene(targetScene); //해당 씬으로 이동
-    // }
-
-    // public void ChangeSceneAfterPause()
-    // {
-    //     Time.timeScale = 1f;
-
-    //     ChangeScene();
-    // }
+    
 }

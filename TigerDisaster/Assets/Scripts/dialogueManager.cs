@@ -8,8 +8,9 @@ public class dialogueManager : MonoBehaviour
     public Text dialogueText;                // 대화창 텍스트
     public GameObject backgroundBox;         // 대사 배경 네모 상자
     public Button nextDialogueButton;        // 다음 대화로 넘어가는 버튼
-
     public GameObject convoPanel;
+    private SceneMove sceneMove;
+    private FadeController fadeController;
 
     private List<string> tuto = new List<string> { "으으... 여기가 어디지. 분명 난 호랑이한테 잡혀갔는데...", "얼른 산 아래로 내려가야겠다." };
     private List<string> dialogues1 = new List<string> { "어...? 분명 왔던 길 아닌가?", "이상하다..." };
@@ -17,15 +18,15 @@ public class dialogueManager : MonoBehaviour
     private List<string> dialogues3 = new List<string> { "여기까지는 쫓아오지 못하는 것 같다..." };
     private List<string> dialogues4 = new List<string> { "절벽이다... 길을 잘못들었나?", "돌아가야겠다." };
     private List<string> dialogues5 = new List<string> { "(그냥 옆으로 지나가야겠다.)" };
-    private List<string> ending = new List<string> { "옆 동네 청년이 글쎄 호랑이한테 잡혀갔대.", "일주일이 지났는데도 안 돌아온 걸 봐서는 이미 잡아먹힌게 틀림 없어!" ,"자네도 호환 조심하게." };
-
+    private List<string> ending = new List<string> { "옆 마을 총각이 글쎄 호랑이한테 잡혀갔대.", " 일주일이 지났는데도 안 돌아온 걸 봐서는 \n       이미 잡아먹힌게 틀림 없어!" ,"          자네도 호환 조심하게." };
     private List<string> currentDialogue;    // 현재 선택된 대화 리스트
     private int dialogueIndex = 0;           // 현재 대화 인덱스
     private bool isTyping = false;           // 텍스트 타이핑 중인지 여부
 
     private void Start()
     {
-        convoPanel.SetActive(false);
+        sceneMove = FindObjectOfType<SceneMove>();
+        fadeController = FindObjectOfType<FadeController>();
     }
 
     // 현재 대화 출력 메서드 - 인덱스를 증가시키지 않고 현재 대화만 표시
@@ -56,6 +57,7 @@ public class dialogueManager : MonoBehaviour
             DisplayCurrentDialogue();        // 다음 대화 출력
         }
         else{
+            Debug.Log("엔드 호출");
             EndDialogue();
         }
     }
@@ -101,5 +103,10 @@ public class dialogueManager : MonoBehaviour
         // backgroundBox.SetActive(false);      // 대사 배경 상자 비활성화
         dialogueIndex = 0;                   // 대화 인덱스 초기화
         convoPanel.SetActive(false);
+
+        //만약 엔딩 씬일경우
+        if (currentDialogue == ending) {
+            sceneMove.ChangeScene();
+        }   
     }
 }

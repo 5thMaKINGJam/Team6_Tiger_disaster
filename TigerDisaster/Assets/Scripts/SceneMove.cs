@@ -16,7 +16,7 @@ public class SceneMove : MonoBehaviour // Make sure 'public' is only applied to 
         if (fadeController != null)
         {
             fadeController.RegisterCallback(OnFadeOutComplete); // Register callback for after FadeOut completes
-            fadeController.FadeOut(targetScene); // Pass targetScene as the argument
+            fadeController.FadeOut(); // Pass targetScene as the argument
         }
     }
 
