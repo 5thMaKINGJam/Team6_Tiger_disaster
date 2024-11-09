@@ -14,7 +14,7 @@ public class PauseScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)){
+        if (Input.GetKeyDown(KeyCode.Escape) && !EventManager.isInEvent){
             if (IsPaused)
                 Resume();
             else

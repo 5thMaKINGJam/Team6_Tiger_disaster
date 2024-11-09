@@ -6,7 +6,7 @@ using System;
 public static class SaveManager
 {
     public static void initDayAndTurn(){
-        setDayAndTurn(0, 1);
+        setDayAndTurn(0, 0);
         PlayerPrefs.SetInt("SaveData", 0);
     }
     public static void setDayAndTurn(int currentDay, int currentTurn)

@@ -13,9 +13,10 @@ public class dialogueManager : MonoBehaviour
 
     private List<string> tuto = new List<string> { "으으... 여기가 어디지. 분명 난 호랑이한테 잡혀갔는데...", "얼른 산 아래로 내려가야겠다." };
     private List<string> dialogues1 = new List<string> { "어...? 분명 왔던 길 아닌가?", "이상하다..." };
-    private List<string> dialogues2 = new List<string> { "여기까지는 쫓아오지 못하는 것 같다..." };
-    private List<string> dialogues3 = new List<string> { "절벽이다... 길을 잘못들었나?", "돌아가야겠다." };
-    private List<string> dialogues4 = new List<string> { "(그냥 옆으로 지나가야겠다.)" };
+    private List<string> dialogues2 = new List<string> { "뒤에서 숨결이 느껴진다."};
+    private List<string> dialogues3 = new List<string> { "여기까지는 쫓아오지 못하는 것 같다..." };
+    private List<string> dialogues4 = new List<string> { "절벽이다... 길을 잘못들었나?", "돌아가야겠다." };
+    private List<string> dialogues5 = new List<string> { "(그냥 옆으로 지나가야겠다.)" };
     private List<string> ending = new List<string> { "옆 동네 청년이 글쎄 호랑이한테 잡혀갔대.", "일주일이 지났는데도 안 돌아온 걸 봐서는 이미 잡아먹힌게 틀림 없어!" ,"자네도 호환 조심하게." };
 
     private List<string> currentDialogue;    // 현재 선택된 대화 리스트
@@ -69,7 +70,8 @@ public class dialogueManager : MonoBehaviour
             case 2: currentDialogue = dialogues2; break;
             case 3: currentDialogue = dialogues3; break;
             case 4: currentDialogue = dialogues4; break;
-            case 5: currentDialogue = ending; break;
+            case 5: currentDialogue = dialogues5; break;
+            case 6: currentDialogue = ending; break;
             default: currentDialogue = tuto; break;
         }
         dialogueIndex = 0; // 새로운 대화 리스트로 시작할 때 인덱스를 초기화
