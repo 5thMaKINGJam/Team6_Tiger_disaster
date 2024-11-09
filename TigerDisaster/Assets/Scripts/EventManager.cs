@@ -105,6 +105,9 @@ public class EventManager : MonoBehaviour
             wallMonseter1.SetActive(false);
             wallMonseter2.SetActive(true);
             wall.SetActive(true);
+
+            AudioManager.Instance.PlaySFX("Shock1");
+
             float slideDuration = 2.0f;  // 이동 시간
             float targetXPosition = -6.7f;  // 목표 위치
 
@@ -151,8 +154,8 @@ public class EventManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
 
             //1.5초후 카메라 무빙 시작
-            //3초 동안 카메라 흔들기 
-            float shakeDuration = 3f;
+            //2초 동안 카메라 흔들기 
+            float shakeDuration = 2f;
             float shakeIntensity = 0.2f;
             for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
             {
@@ -164,7 +167,7 @@ public class EventManager : MonoBehaviour
             //2초후 날 쳐다보는 목 귀신 이미지로 변경 (0.5초동안 지속)
             SpriteRenderer mstSpriter = neckMonster1.GetComponent<SpriteRenderer>();
             mstSpriter.sprite = monsterSprite[0];
-            shakeDuration = 0.5f;
+            shakeDuration = 1f;
             for (float elapsed = 0; elapsed < shakeDuration; elapsed += Time.deltaTime)
             {
                 float offsetX = Random.Range(-1f, 1f) * shakeIntensity;
@@ -286,7 +289,7 @@ public class EventManager : MonoBehaviour
         //철퍽 철퍽 철퍽 재생
         AudioManager.Instance.PlaySFX("TalGhostWalking");
         Invoke("PlaySound", 0.2f);
-        Invoke("PlaySound", 0.2f);
+        Invoke("PlaySound", 0.4f);
 
 
     }
@@ -335,6 +338,7 @@ public class EventManager : MonoBehaviour
     public IEnumerator Event2_7(){
         Debug.Log("이벤트 2-7");
         btn.interactable = false;
+        AudioManager.Instance.PlayMusic("WindBlow");
         // 2초 대기
         yield return new WaitForSeconds(2f);
         //다이얼로그 호출
@@ -349,6 +353,7 @@ public class EventManager : MonoBehaviour
     //탈귀신 다리만 등장
     public IEnumerator Event2_8(){
         Debug.Log("이벤트 2-8");
+        AudioManager.Instance.PlayMusic("Epilogue");
         btn.interactable = false;
         maskLeg.SetActive(true);
         //웃는 소리 출력
@@ -416,13 +421,6 @@ public class EventManager : MonoBehaviour
         btn.interactable = true;
     }
 
-    public void Event2_17(){
-        Debug.Log("이벤트 2-17");
-        //장승 비명 재생
-        AudioManager.Instance.PlayMusic("3bgm");
-        
-    }
-
     public IEnumerator Typing(string message){
         dialogueText.text = "";  // 초기 텍스트 비우기
         float typingSpeed = 0.3f;
@@ -430,6 +428,11 @@ public class EventManager : MonoBehaviour
         for (int i = 0; i < message.Length; i++)
         {
             dialogueText.text += message[i];  // 한 글자씩 추가
+            if (message[i] != ' ')
+            {
+                Debug.Log(message[i]);
+                AudioManager.Instance.PlaySFX("WordImpact");
+            }
             yield return new WaitForSeconds(typingSpeed);  // 지연 시간 설정
         }
     }
