@@ -1020,6 +1020,7 @@ MonoBehaviour:
   neckMonster3: {fileID: 902527471}
   neckFace: {fileID: 1397187332}
   Face: {fileID: 1967374283}
+  footPrint: []
   dialogueText: {fileID: 1592767557}
   monsterSprite:
   - {fileID: 21300000, guid: b32b29a01aed7ba46beaee1924c84515, type: 3}
