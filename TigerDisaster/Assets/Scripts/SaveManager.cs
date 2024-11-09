@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using System;
 public class SaveManager : MonoBehaviour
 {
-    private static int currentDay;
-    private static int currentTurn;
-    private const int turnsPerDay = 15;
+    public static int currentDay;
+    public static int currentTurn;
+    public const int turnsPerDay = 15;
 
     void Start()
     {
