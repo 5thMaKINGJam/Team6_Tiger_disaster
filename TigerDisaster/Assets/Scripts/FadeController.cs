@@ -12,7 +12,7 @@ public class FadeController : MonoBehaviour
     void Start()
     {
         if (isFadeIn)
-        {
+        {   
             panel.SetActive(true);
             StartCoroutine(CoFadeIn());
         }
@@ -21,7 +21,7 @@ public class FadeController : MonoBehaviour
     public void FadeOut(string nextSceneName)
     {
         panel.SetActive(true);
-        RegisterCallback(() => StartCoroutine(LoadSceneWithFadeIn(nextSceneName)));
+        // RegisterCallback(() => StartCoroutine(LoadSceneWithFadeIn(nextSceneName)));
         StartCoroutine(CoFadeOut());
     }
 
@@ -34,7 +34,7 @@ public class FadeController : MonoBehaviour
         StartCoroutine(CoFadeIn());
     }
 
-    IEnumerator CoFadeIn()
+    public IEnumerator CoFadeIn()
     {
         float elapsedTime = 0f;
         float fadedTime = 3f;
@@ -49,10 +49,10 @@ public class FadeController : MonoBehaviour
         onCompleteCallback?.Invoke();
     }
 
-    IEnumerator CoFadeOut()
+    public IEnumerator CoFadeOut()
     {
         float elapsedTime = 0f;
-        float fadedTime = 5f;
+        float fadedTime = 3f;
 
         while (elapsedTime <= fadedTime)
         {
