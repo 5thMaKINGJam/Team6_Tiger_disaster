@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class prologue : MonoBehaviour
+public class dialogueManager : MonoBehaviour
 {
     public Text dialogueText;                // 대화창 텍스트
     public GameObject backgroundBox;         // 대사 배경 네모 상자
