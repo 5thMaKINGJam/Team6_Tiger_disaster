@@ -153,7 +153,7 @@ Transform:
   m_Children:
   - {fileID: 616804677}
   m_Father: {fileID: 540618975}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &190333895
 GameObject:
@@ -407,37 +407,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &475582791
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 475582792}
-  m_Layer: 0
-  m_Name: Panel_Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &475582792
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 475582791}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -971.22687, y: -155.508, z: -9719.523}
-  m_LocalScale: {x: 107.96846, y: 107.96846, z: 107.96846}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 540618975}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +583,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 475582792}
   - {fileID: 726877659}
   - {fileID: 118110314}
   - {fileID: 1074712696}
@@ -650,7 +618,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583891409}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36885b80d615b814c9aeabd1eeaf8f53, type: 3}
   m_Name: 
@@ -662,7 +630,7 @@ MonoBehaviour:
   neckMonster: {fileID: 464309679}
   legMonster: {fileID: 800364134}
   monsterSprite:
-  - {fileID: 21300000, guid: 8fd104c7509a2f54c93011f8dd7853ea, type: 3}
+  - {fileID: 21300000, guid: b32b29a01aed7ba46beaee1924c84515, type: 3}
   - {fileID: 21300000, guid: 0f30811997238d14fa8151b7f1c6d9a0, type: 3}
   isInEvent: 0
 --- !u!4 &583891411
@@ -876,7 +844,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 540618975}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1121,7 +1089,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 540618975}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
