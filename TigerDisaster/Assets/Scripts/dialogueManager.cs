@@ -8,8 +8,9 @@ public class dialogueManager : MonoBehaviour
     public Text dialogueText;                // 대화창 텍스트
     public GameObject backgroundBox;         // 대사 배경 네모 상자
     public Button nextDialogueButton;        // 다음 대화로 넘어가는 버튼
-
     public GameObject convoPanel;
+    private SceneMove sceneMove;
+    private FadeController fadeController;
 
     private List<string> tuto = new List<string> { "으으... 여기가 어디지. 분명 난 호랑이한테 잡혀갔는데...", "얼른 산 아래로 내려가야겠다." };
     private List<string> dialogues1 = new List<string> { "어...? 분명 왔던 길 아닌가?", "이상하다..." };
@@ -24,7 +25,8 @@ public class dialogueManager : MonoBehaviour
 
     private void Start()
     {
-
+        sceneMove = FindObjectOfType<SceneMove>();
+        fadeController = FindObjectOfType<FadeController>();
     }
 
     // 현재 대화 출력 메서드 - 인덱스를 증가시키지 않고 현재 대화만 표시
@@ -33,6 +35,7 @@ public class dialogueManager : MonoBehaviour
         if (isTyping) return;                // 타이핑 중이면 중복 호출 방지
         convoPanel.SetActive(true);
         nextDialogueButton.interactable = false;
+        Debug.Log(currentDialogue.Count);
         // 현재 대화 리스트에서 인덱스 확인
         if (dialogueIndex < currentDialogue.Count)
         {
@@ -100,5 +103,16 @@ public class dialogueManager : MonoBehaviour
         // backgroundBox.SetActive(false);      // 대사 배경 상자 비활성화
         dialogueIndex = 0;                   // 대화 인덱스 초기화
         convoPanel.SetActive(false);
+
+        //만약 엔딩 씬일경우
+        if(currentDialogue == ending){
+            StartCoroutine(goToStartMenu());
+        }
+    }
+
+    IEnumerator goToStartMenu(){
+        StartCoroutine(fadeController.CoFadeOut());
+        yield return new WaitForSeconds(5f);
+        sceneMove.ChangeScene();
     }
 }
