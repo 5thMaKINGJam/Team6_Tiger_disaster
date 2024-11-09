@@ -13,7 +13,7 @@ public class ending : MonoBehaviour
         if (fadeController != null)
         {
             // fadeController.RegisterCallback(OnFadeOutComplete); // 페이드아웃 후 진행할 액션 등록
-            fadeController.FadeOut(); // FadeOut 호출
+            fadeController.FadeOut("ending"); // FadeOut 호출
         }
     }
 

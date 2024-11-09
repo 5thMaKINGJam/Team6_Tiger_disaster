@@ -71,7 +71,8 @@ public class EventManager : MonoBehaviour
         mainCamera.transform.position = originalCameraPos;
     }
 
-    public void Event0_3() {
+    public void Event0_3()
+    {
         if (!isInEvent)
         {
             isInEvent = true;
@@ -81,12 +82,7 @@ public class EventManager : MonoBehaviour
 
 
         }
-
-
-
-
     }
- 
 
  
 
