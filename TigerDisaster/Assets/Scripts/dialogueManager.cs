@@ -17,15 +17,14 @@ public class dialogueManager : MonoBehaviour
     private List<string> dialogues3 = new List<string> { "여기까지는 쫓아오지 못하는 것 같다..." };
     private List<string> dialogues4 = new List<string> { "절벽이다... 길을 잘못들었나?", "돌아가야겠다." };
     private List<string> dialogues5 = new List<string> { "(그냥 옆으로 지나가야겠다.)" };
-    private List<string> ending = new List<string> { "옆 동네 청년이 글쎄 호랑이한테 잡혀갔대.", "일주일이 지났는데도 안 돌아온 걸 봐서는 이미 잡아먹힌게 틀림 없어!" ,"자네도 호환 조심하게." };
-
+    private List<string> ending = new List<string> { "옆 마을 총각이 글쎄 호랑이한테 잡혀갔대.", " 일주일이 지났는데도 안 돌아온 걸 봐서는 \n       이미 잡아먹힌게 틀림 없어!" ,"          자네도 호환 조심하게." };
     private List<string> currentDialogue;    // 현재 선택된 대화 리스트
     private int dialogueIndex = 0;           // 현재 대화 인덱스
     private bool isTyping = false;           // 텍스트 타이핑 중인지 여부
 
     private void Start()
     {
-        convoPanel.SetActive(false);
+
     }
 
     // 현재 대화 출력 메서드 - 인덱스를 증가시키지 않고 현재 대화만 표시
