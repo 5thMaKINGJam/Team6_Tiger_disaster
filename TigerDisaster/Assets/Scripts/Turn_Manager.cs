@@ -8,8 +8,10 @@ using System;
 public class Turn_Manager : MonoBehaviour
 {
     public List<GameObject> panels;
-    private List<int> conditions = new List<int> { 0, 1, 0, 1 };
+    private List<int> conditions = new List<int> {2, 0, 1, 0, 1 ,0,1,0,1 ,4,5,0,1,0,3};
 
+
+    
 
     private int currentnum = 1;
     public Button button;
@@ -17,11 +19,13 @@ public class Turn_Manager : MonoBehaviour
     public Image circularImage;
     public float duration = 1f;  // 슬라이더가 1에서 0으로 줄어드는 시간
     public GameObject[] Ghosts;
-    private SaveManager saveMan;
+    private EventManager eventManager;
+
 
     void Start()
     {
-        
+        eventManager = FindObjectOfType<EventManager>();
+        currentnum = 1;
     }
 
 
@@ -39,7 +43,6 @@ public class Turn_Manager : MonoBehaviour
 
     public void ShowPanel()
     {
-
 
         GameObject paneli = panels[conditions[currentnum]];
 
@@ -146,7 +149,19 @@ public class Turn_Manager : MonoBehaviour
             Ghosts[0].SetActive(false);
         }
 
+        if (day == 0 && turn == 9)
+        {
+            eventManager.Event_1();
+        }
+
+        if (day == 0 && turn == 10)
+        {
+            eventManager.StartCoroutine(eventManager.Event_2());
+        }
+
        
+
+
 
 
     }
