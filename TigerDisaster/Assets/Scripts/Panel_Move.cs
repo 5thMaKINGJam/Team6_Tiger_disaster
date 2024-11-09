@@ -106,7 +106,7 @@ public class Panel_Move : MonoBehaviour
 
 
     }
-
+    
   
 
     void AppearImage() {
