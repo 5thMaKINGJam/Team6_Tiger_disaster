@@ -1427,6 +1427,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 415684b75b23f8b47a8b7e010071a94e, type: 3}
   - name: backBreathe
     clip: {fileID: 8300000, guid: 9100984863dc011489490f3c8db8a1e0, type: 3}
+  - name: Epilogue
+    clip: {fileID: 8300000, guid: 9100984863dc011489490f3c8db8a1e0, type: 3}
   sfxSounds:
   - name: BodyDump
     clip: {fileID: 8300000, guid: 1afa7f78aeeb93746905d1faf40d6f21, type: 3}
@@ -1456,8 +1458,6 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 81231b186cda507478a56096886cbdf6, type: 3}
   - name: frontBreathe
     clip: {fileID: 8300000, guid: 45971a72e9968c249a7726ce556b47a5, type: 3}
-  - name: faceAppear
-    clip: {fileID: 8300000, guid: d370fdc031a50904ebe4ae65b01d5d80, type: 3}
   - name: faceAppear
     clip: {fileID: 8300000, guid: d370fdc031a50904ebe4ae65b01d5d80, type: 3}
   - name: semiback

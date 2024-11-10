@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using Kino;
 
 public class EventManager : MonoBehaviour
 {
@@ -52,15 +53,20 @@ public class EventManager : MonoBehaviour
     public Sprite[] monsterSprite;  // 바뀔 귀신의 이미지
     public static bool isInEvent = false;
 
+    private AnalogGlitch analogGlitch;
+
     void Awake(){
         dialogueManager = FindObjectOfType<dialogueManager>();
     }
 
     void Start()
     {
+        Event2_9();
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
         sceneMove = FindObjectOfType<SceneMove>();
+        analogGlitch = Camera.main.GetComponent<AnalogGlitch>();
+
     }
 
     void Update() 
@@ -406,34 +412,65 @@ public class EventManager : MonoBehaviour
         mySequence = DOTween.Sequence();
         mySequence.OnStart(() => {
             btn.interactable = false;
+            
+            analogGlitch.scanLineJitter = 0.35f;
+            analogGlitch.verticalJump = 0.15f;
+            analogGlitch.horizontalShake = 0.065f;
+            analogGlitch.colorDrift = 0.2f;
+            
+        }).AppendCallback(() => {
+            maskMonster3[0].SetActive(true);
+            AudioManager.Instance.PlaySFX("TalGhostLaugh");
+        })  // 객체 활성화
+        .AppendInterval(3f)                         // 1초 동안 유지
+        .AppendCallback(() => { 
+            maskMonster3[0].SetActive(false); 
+            maskMonster3[1].SetActive(true);
+            analogGlitch.scanLineJitter = 0.55f;
+            AudioManager.Instance.PlaySFX("TalGhostLaugh");
 
-        }).AppendCallback(() => { maskMonster3[0].SetActive(true); })  // 객체 활성화
-        .AppendInterval(1f)                         // 1초 동안 유지
-        .AppendCallback(() => { maskMonster3[0].SetActive(false); maskMonster3[1].SetActive(true);  }) // 객체 활성화
-        .AppendInterval(1f)
-        .AppendCallback(() => { maskMonster3[1].SetActive(false); maskMonster3[2].SetActive(true);  }) // 객체 활성화
-        .AppendInterval(1f)
+
+        }) // 객체 활성화
+        .AppendInterval(2f)
+        .AppendCallback(() => { 
+            maskMonster3[1].SetActive(false); 
+            maskMonster3[2].SetActive(true);
+            analogGlitch.scanLineJitter = 0.85f;
+            AudioManager.Instance.PlaySFX("TalGhostLaugh");
+
+
+        }) // 객체 활성화
+        .AppendInterval(2f)
         .AppendCallback(() => {
-        // maskMonster3[1]의 첫 번째 자식인 머리 오브젝트를 2초 동안 아래로 굴러떨어지게 만듬
-        Transform head = maskMonster3[2].transform.GetChild(0); // 첫 번째 자식 (머리 오브젝트)
+            // maskMonster3[1]의 첫 번째 자식인 머리 오브젝트를 2초 동안 아래로 굴러떨어지게 만듬
+            Transform head = maskMonster3[2].transform.GetChild(0); // 첫 번째 자식 (머리 오브젝트)
 
-        // 포물선 모양의 경로로 이동 (x = -t^2 형태, t는 시간)
-        Vector3 startPos = head.position;
-        float fallDuration = 2f;  // 2초 동안 떨어지도록 설정
-        float maxX = 3f;  // x축으로 이동할 최대 거리
+            // 포물선 모양의 경로로 이동 (x = -t^2 형태, t는 시간)
+            Vector3 startPos = head.position;
+            float fallDuration = 2f;  // 2초 동안 떨어지도록 설정
+            float maxX = 3f;  // x축으로 이동할 최대 거리
 
-        DOTween.To(() => 0f, x => {
-            // -x^2 형태로 이동
-            float y = -Mathf.Pow(x, 2);
-            head.position = new Vector3(startPos.x - x, startPos.y + y, startPos.z); // 포물선 이동
-        }, maxX, fallDuration).SetEase(Ease.InOutSine); // Ease 효과를 추가하여 부드럽게
+            DOTween.To(() => 0f, x => {
+                // -x^2 형태로 이동
+                float y = -Mathf.Pow(x, 2);
+                head.position = new Vector3(startPos.x - x, startPos.y + y, startPos.z); // 포물선 이동
+            }, maxX, fallDuration).SetEase(Ease.InOutSine); // Ease 효과를 추가하여 부드럽게
 
-        // 동시에 회전시키기
-        head.DORotate(new Vector3(0f, 0f, 10f), fallDuration, RotateMode.FastBeyond360)
-            .SetEase(Ease.InOutSine);  // 회전 애니메이션에 Ease 효과 추가
-    })
+            // 동시에 회전시키기
+            head.DORotate(new Vector3(0f, 0f, 10f), fallDuration, RotateMode.FastBeyond360)
+                .SetEase(Ease.InOutSine);  // 회전 애니메이션에 Ease 효과 추가
+        })
+        .AppendCallback(() => {
+            AudioManager.Instance.PlaySFX("TalGhostLaugh");
+        })
+        .AppendInterval(2f)
         .OnComplete(() => {
+            maskMonster3[2].SetActive(false);
             btn.interactable = true;
+            analogGlitch.scanLineJitter = 0f;
+            analogGlitch.verticalJump = 0f;
+            analogGlitch.horizontalShake = 0f;
+            analogGlitch.colorDrift = 0f;
         });
 
         mySequence.Restart(); // 시퀀스를 다시 시작
@@ -463,8 +500,8 @@ public class EventManager : MonoBehaviour
             neckMonster3.SetActive(false);
             btn.interactable = false;
             neckFace.SetActive(true);
-            Vector3 startPosition = new Vector3(0.5f, 7.2f, 0);   // 처음 위치 (씬 밖)
-            Vector3 endPosition = new Vector3(0, 2.85f, 0);     // 최종 위치 (씬 안)
+            Vector3 startPosition = new Vector3(0f, 8f, 0);   // 처음 위치 (씬 밖)
+            Vector3 endPosition = new Vector3(0, 2.0f, 0);     // 최종 위치 (씬 안)
             float duration = 5.0f;                              // 이동 시간 (조정 가능)
             float elapsedTime = 0f;
 
