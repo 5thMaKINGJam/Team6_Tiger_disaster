@@ -106,7 +106,9 @@ public class dialogueManager : MonoBehaviour
 
         //만약 엔딩 씬일경우
         if (currentDialogue == ending) {
-            sceneMove.ChangeScene();
+            ending end = FindObjectOfType<ending>();
+            fadeController.RegisterCallback(end.afterEpilogue); // Register callback for after FadeOut completes
+            fadeController.FadeOut(); // Pass targetScene as the argument
         }   
     }
 }
