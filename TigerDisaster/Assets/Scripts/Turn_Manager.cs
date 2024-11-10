@@ -17,7 +17,7 @@ public class Turn_Manager : MonoBehaviour
     private SpriteRenderer bgSpriter;
     public Sprite[] BackGroundSprite;
     public Image circularImage;
-    private float duration = 0f;  // �����̴��� 1���� 0���� �پ��� �ð�
+    private float duration = 1f;  // �����̴��� 1���� 0���� �پ��� �ð�
     public GameObject[] Ghosts;
     RectTransform rt;
     private int currentnum = 1;
@@ -239,7 +239,11 @@ public class Turn_Manager : MonoBehaviour
         int day = currentday;
         int turn = currentnum;
 
-        if (day == 0 && turn == 3) {
+        if (day == 0 && turn == 0)
+        {
+            eventManager.Event0_0();
+        }
+        else if (day == 0 && turn == 3) {
             eventManager.Event0_3();
         }
         else if (day == 0  && turn == 7)

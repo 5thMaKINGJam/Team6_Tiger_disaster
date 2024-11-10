@@ -84,6 +84,11 @@ public class EventManager : MonoBehaviour
         mainCamera.transform.position = originalCameraPos;
     }
 
+    public void Event0_0()
+    {
+        dialogueManager.SelectDialogue(0);
+        dialogueManager.DisplayCurrentDialogue();
+    }
     public void Event0_3()
     {
         if (!isInEvent){
@@ -397,6 +402,7 @@ public class EventManager : MonoBehaviour
             maskLeg.SetActive(false);
             AudioManager.Instance.PlaySFX("TalGhostWalking");
             Invoke("PlaySound", 0.4f);
+            yield return new WaitForSeconds(1f);
         }
         isInEvent = false;
         btn.interactable = true;

@@ -690,7 +690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &428944802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1490,7 +1490,9 @@ MonoBehaviour:
   - {fileID: 1974560412}
   - {fileID: 1953734083}
   dialogueText: {fileID: 1592767557}
-  monsterSprite: []
+  monsterSprite:
+  - {fileID: 21300000, guid: b1b2a2e42333dc145a019124eeff383a, type: 3}
+  - {fileID: 21300000, guid: c77614c38c83a5b40884626da2c62d69, type: 3}
 --- !u!4 &583891411
 Transform:
   m_ObjectHideFlags: 0
@@ -2917,7 +2919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1211789285
 Transform:
   m_ObjectHideFlags: 0
