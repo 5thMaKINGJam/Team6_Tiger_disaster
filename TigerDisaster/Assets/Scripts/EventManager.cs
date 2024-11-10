@@ -61,7 +61,6 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        Event2_9();
         originalCameraPos = new Vector3(0, 0, -10);
         isInEvent = false;
         sceneMove = FindObjectOfType<SceneMove>();
@@ -417,17 +416,20 @@ public class EventManager : MonoBehaviour
             analogGlitch.verticalJump = 0.15f;
             analogGlitch.horizontalShake = 0.065f;
             analogGlitch.colorDrift = 0.2f;
+
+            AudioManager.Instance.PlayMusic("noise");
             
         }).AppendCallback(() => {
             maskMonster3[0].SetActive(true);
             AudioManager.Instance.PlaySFX("TalGhostLaugh");
+            AudioManager.Instance.PlaySFX("btn");
         })  // 객체 활성화
         .AppendInterval(3f)                         // 1초 동안 유지
         .AppendCallback(() => { 
             maskMonster3[0].SetActive(false); 
             maskMonster3[1].SetActive(true);
             analogGlitch.scanLineJitter = 0.55f;
-            AudioManager.Instance.PlaySFX("TalGhostLaugh");
+            AudioManager.Instance.PlaySFX("btn");
 
 
         }) // 객체 활성화
@@ -436,11 +438,11 @@ public class EventManager : MonoBehaviour
             maskMonster3[1].SetActive(false); 
             maskMonster3[2].SetActive(true);
             analogGlitch.scanLineJitter = 0.85f;
-            AudioManager.Instance.PlaySFX("TalGhostLaugh");
-
+            AudioManager.Instance.PlaySFX("btn");
+            AudioManager.Instance.PlaySFX("shock1");
 
         }) // 객체 활성화
-        .AppendInterval(2f)
+        .AppendInterval(3f)
         .AppendCallback(() => {
             // maskMonster3[1]의 첫 번째 자식인 머리 오브젝트를 2초 동안 아래로 굴러떨어지게 만듬
             Transform head = maskMonster3[2].transform.GetChild(0); // 첫 번째 자식 (머리 오브젝트)
@@ -449,10 +451,11 @@ public class EventManager : MonoBehaviour
             Vector3 startPos = head.position;
             float fallDuration = 2f;  // 2초 동안 떨어지도록 설정
             float maxX = 3f;  // x축으로 이동할 최대 거리
+            AudioManager.Instance.PlaySFX("neckCracked");
 
             DOTween.To(() => 0f, x => {
                 // -x^2 형태로 이동
-                float y = -Mathf.Pow(x, 2);
+                float y = -Mathf.Pow(x, 4);
                 head.position = new Vector3(startPos.x - x, startPos.y + y, startPos.z); // 포물선 이동
             }, maxX, fallDuration).SetEase(Ease.InOutSine); // Ease 효과를 추가하여 부드럽게
 
@@ -460,18 +463,20 @@ public class EventManager : MonoBehaviour
             head.DORotate(new Vector3(0f, 0f, 10f), fallDuration, RotateMode.FastBeyond360)
                 .SetEase(Ease.InOutSine);  // 회전 애니메이션에 Ease 효과 추가
         })
-        .AppendCallback(() => {
-            AudioManager.Instance.PlaySFX("TalGhostLaugh");
-        })
-        .AppendInterval(2f)
-        .OnComplete(() => {
-            maskMonster3[2].SetActive(false);
-            btn.interactable = true;
-            analogGlitch.scanLineJitter = 0f;
-            analogGlitch.verticalJump = 0f;
-            analogGlitch.horizontalShake = 0f;
-            analogGlitch.colorDrift = 0f;
-        });
+        .AppendInterval(4f)
+    .OnComplete(() => {
+
+        // AnalogGlitch 효과를 천천히 0으로 줄이기
+        DOTween.To(() => analogGlitch.scanLineJitter, x => analogGlitch.scanLineJitter = x, 0f, 2f);
+        DOTween.To(() => analogGlitch.verticalJump, x => analogGlitch.verticalJump = x, 0f, 2f);
+        DOTween.To(() => analogGlitch.horizontalShake, x => analogGlitch.horizontalShake = x, 0f, 2f);
+        DOTween.To(() => analogGlitch.colorDrift, x => analogGlitch.colorDrift = x, 0f, 2f);
+
+        maskMonster3[2].SetActive(false);
+        btn.interactable = true;
+
+        AudioManager.Instance.PlayMusic("2bgm");
+    });
 
         mySequence.Restart(); // 시퀀스를 다시 시작
     }
