@@ -101,7 +101,7 @@ public class Turn_Manager : MonoBehaviour
             RedDoor0.SetActive(false);
             RedDoor1.SetActive(true);
 
-            if (currentDayList == day3)
+            if (currentDayList == day2)
             {
                 RedJang.SetActive(true);
             }
