@@ -593,7 +593,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 454.59}
+  m_AnchoredPosition: {x: 0, y: 454.59003}
   m_SizeDelta: {x: 719.69, y: 224.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &576804945
@@ -1471,6 +1471,26 @@ PrefabInstance:
     - target: {fileID: 3799541673169681971, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
+      propertyPath: sfxSounds.Array.data[21].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 065aa2d9b94136c438d257ff27739847, type: 3}
+    - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
+      propertyPath: sfxSounds.Array.data[21].name
+      value: WordSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
+      propertyPath: sfxSounds.Array.data[22].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 911720eef82eaf9489caf2340caed616, type: 3}
+    - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
+      propertyPath: sfxSounds.Array.data[22].name
+      value: Apilogue
       objectReference: {fileID: 0}
     - target: {fileID: 3799541673169681997, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
       propertyPath: m_Name

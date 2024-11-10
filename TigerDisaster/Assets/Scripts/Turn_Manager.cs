@@ -17,7 +17,7 @@ public class Turn_Manager : MonoBehaviour
     private SpriteRenderer bgSpriter;
     public Sprite[] BackGroundSprite;
     public Image circularImage;
-    private float duration = 1f;  // �����̴��� 1���� 0���� �پ��� �ð�
+    private float duration = 1f;  
     public GameObject[] Ghosts;
     RectTransform rt;
     private int currentnum = 1;
@@ -101,7 +101,7 @@ public class Turn_Manager : MonoBehaviour
             RedDoor0.SetActive(false);
             RedDoor1.SetActive(true);
 
-            if (currentDayList == day3)
+            if (currentDayList == day2)
             {
                 RedJang.SetActive(true);
             }
