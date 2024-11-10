@@ -108,8 +108,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9108e3d545693c046b2214bb299d5228, type: 3}
   - name: WordSound
     clip: {fileID: 8300000, guid: 065aa2d9b94136c438d257ff27739847, type: 3}
-  - name: Apilogue
+  - name: Epilogue
     clip: {fileID: 8300000, guid: 911720eef82eaf9489caf2340caed616, type: 3}
+  - name: Squeak
+    clip: {fileID: 8300000, guid: bc52afc906e86ee429c8f65b0c396b9f, type: 3}
   musicSource: {fileID: 3799541673308074800}
   sfxSource: {fileID: 3799541673336133176}
 --- !u!1 &3799541673308074801

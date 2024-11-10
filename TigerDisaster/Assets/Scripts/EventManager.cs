@@ -242,6 +242,10 @@ public class EventManager : MonoBehaviour
             isInEvent = true;
             btn.interactable = false;
             legMonster.SetActive(true);
+
+
+            AudioManager.Instance.PlaySFX("Squeak");
+
             // 원래 위치 저장
             Vector3 originalPosition = legMonster.transform.position;
             Quaternion originalRotation = legMonster.transform.rotation;
