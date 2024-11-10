@@ -112,6 +112,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 911720eef82eaf9489caf2340caed616, type: 3}
   - name: Squeak
     clip: {fileID: 8300000, guid: bc52afc906e86ee429c8f65b0c396b9f, type: 3}
+  - name: Boom
+    clip: {fileID: 8300000, guid: e1ec1aa3262008d40bb7feb0720e0d8d, type: 3}
   musicSource: {fileID: 3799541673308074800}
   sfxSource: {fileID: 3799541673336133176}
 --- !u!1 &3799541673308074801

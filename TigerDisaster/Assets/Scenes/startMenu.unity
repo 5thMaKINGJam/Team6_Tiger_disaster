@@ -1474,7 +1474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
       propertyPath: sfxSounds.Array.size
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
       propertyPath: sfxSounds.Array.data[21].clip
@@ -1499,6 +1499,14 @@ PrefabInstance:
     - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
       propertyPath: sfxSounds.Array.data[23].name
       value: Squeak
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
+      propertyPath: sfxSounds.Array.data[24].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e1ec1aa3262008d40bb7feb0720e0d8d, type: 3}
+    - target: {fileID: 3799541673169681996, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
+      propertyPath: sfxSounds.Array.data[24].name
+      value: Boom
       objectReference: {fileID: 0}
     - target: {fileID: 3799541673169681997, guid: 39dfc425753bc8847acaf834cf6039d7, type: 3}
       propertyPath: m_Name
