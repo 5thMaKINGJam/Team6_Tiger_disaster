@@ -1460,7 +1460,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1592767557}
   monsterSprite:
   - {fileID: 21300000, guid: b32b29a01aed7ba46beaee1924c84515, type: 3}
-  - {fileID: 21300000, guid: 0f30811997238d14fa8151b7f1c6d9a0, type: 3}
+  - {fileID: 21300000, guid: c77614c38c83a5b40884626da2c62d69, type: 3}
 --- !u!4 &583891411
 Transform:
   m_ObjectHideFlags: 0
@@ -1778,7 +1778,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bdd62bea45c833f438c31d09525715a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a88957444fb04742adb341e57bebda7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2111,7 +2111,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bdd62bea45c833f438c31d09525715a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a88957444fb04742adb341e57bebda7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
