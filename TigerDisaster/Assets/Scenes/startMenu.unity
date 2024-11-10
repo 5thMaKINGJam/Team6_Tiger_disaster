@@ -1462,6 +1462,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d370fdc031a50904ebe4ae65b01d5d80, type: 3}
   - name: semiback
     clip: {fileID: 8300000, guid: bb22ae7f01ed5de448bf88b999eac8eb, type: 3}
+  - name: Strangedeer
+    clip: {fileID: 8300000, guid: 1b039669ef3f211448f680eb5a714363, type: 3}
+  - name: crow
+    clip: {fileID: 8300000, guid: e373e0e869722dc41860a7dd57b00516, type: 3}
+  - name: KnockDoor
+    clip: {fileID: 8300000, guid: d9e78ef5eeba9cb408e0ca90783e40bb, type: 3}
   musicSource: {fileID: 677128550081890037}
   sfxSource: {fileID: 677128549970502653}
 --- !u!4 &677128549943495670

@@ -101,7 +101,7 @@ public class Turn_Manager : MonoBehaviour
             RedDoor0.SetActive(false);
             RedDoor1.SetActive(true);
 
-            if (currentDayList == day1 || currentDayList == day2 || currentDayList == day3)
+            if (currentDayList == day3)
             {
                 RedJang.SetActive(true);
             }
@@ -281,6 +281,8 @@ public class Turn_Manager : MonoBehaviour
 
         if (day == 0 && turn == 15){
             eventManager.Event0_15();
+            AudioManager.Instance.PlaySFX("crow");
+
         }
 
         else if (day == 1 && turn == 2)
@@ -327,6 +329,11 @@ public class Turn_Manager : MonoBehaviour
         else if (day == 1 && turn == 14)
         {
             eventManager.Event1_14();
+        }
+
+        else if (day == 2 && turn == 1)
+        {
+            AudioManager.Instance.PlaySFX("KnockDoor");
         }
 
         else if (day == 2 && turn == 5)
