@@ -65,7 +65,6 @@ public class EventManager : MonoBehaviour
         isInEvent = false;
         sceneMove = FindObjectOfType<SceneMove>();
         analogGlitch = Camera.main.GetComponent<AnalogGlitch>();
-
     }
 
     void Update() 
@@ -85,6 +84,11 @@ public class EventManager : MonoBehaviour
         mainCamera.transform.position = originalCameraPos;
     }
 
+    public void Event0_0()
+    {
+        dialogueManager.SelectDialogue(0);
+        dialogueManager.DisplayCurrentDialogue();
+    }
     public void Event0_3()
     {
         if (!isInEvent){
@@ -398,6 +402,7 @@ public class EventManager : MonoBehaviour
             maskLeg.SetActive(false);
             AudioManager.Instance.PlaySFX("TalGhostWalking");
             Invoke("PlaySound", 0.4f);
+            yield return new WaitForSeconds(1f);
         }
         isInEvent = false;
         btn.interactable = true;
@@ -576,6 +581,8 @@ public class EventManager : MonoBehaviour
             lastFace.SetActive(true);
             AudioManager.Instance.PlaySFX("DeerShock");
             AudioManager.Instance.PlaySFX("frontBreathe");
+            analogGlitch.verticalJump = 0.1f;
+            analogGlitch.scanLineJitter = 0.5f;
         }).Append(lastFace.transform.DOMove(targetPos, 0.3f)).Append(lastFace.transform.DOPunchPosition(new Vector3(0, 1, 0), 4, 10, 1, false))
         .OnComplete(() => {
             Event3_2();
@@ -596,6 +603,8 @@ public class EventManager : MonoBehaviour
             .Join(lastFace.transform.DOScale(2,2))
         .OnComplete(() => {
             Event3_3();
+            analogGlitch.verticalJump = 0.50f;
+
         });
 
         mySequence.Restart(); // 시퀀스를 다시 시작
@@ -612,6 +621,8 @@ public class EventManager : MonoBehaviour
             .Join(lastFace.transform.DOScale(3, 2))
         .OnComplete(() => {
             Event3_4();
+            analogGlitch.verticalJump = 0.5f;
+            analogGlitch.scanLineJitter = 0.9f;
         });
 
         mySequence.Restart(); // 시퀀스를 다시 시작
@@ -627,6 +638,7 @@ public class EventManager : MonoBehaviour
             .Join(lastFace.transform.DOScale(4, 2))
         .OnComplete(() => {
             sceneMove.ChangeScene();
+
         });
 
         mySequence.Restart(); // 시퀀스를 다시 시작
