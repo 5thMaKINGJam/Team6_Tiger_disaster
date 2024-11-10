@@ -463,8 +463,8 @@ public class EventManager : MonoBehaviour
             neckMonster3.SetActive(false);
             btn.interactable = false;
             neckFace.SetActive(true);
-            Vector3 startPosition = new Vector3(0.5f, 7.2f, 0);   // 처음 위치 (씬 밖)
-            Vector3 endPosition = new Vector3(0, 2.85f, 0);     // 최종 위치 (씬 안)
+            Vector3 startPosition = new Vector3(0f, 8f, 0);   // 처음 위치 (씬 밖)
+            Vector3 endPosition = new Vector3(0, 2.0f, 0);     // 최종 위치 (씬 안)
             float duration = 5.0f;                              // 이동 시간 (조정 가능)
             float elapsedTime = 0f;
 
