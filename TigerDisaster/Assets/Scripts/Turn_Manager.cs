@@ -331,6 +331,11 @@ public class Turn_Manager : MonoBehaviour
             eventManager.Event1_14();
         }
 
+        else if (day == 2 && turn == 1)
+        {
+            AudioManager.Instance.PlaySFX("KnockDoor");
+        }
+
         else if (day == 2 && turn == 5)
         {
             eventManager.Event2_05();
