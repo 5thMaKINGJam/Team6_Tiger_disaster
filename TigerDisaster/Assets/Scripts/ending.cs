@@ -56,7 +56,7 @@ public class ending : MonoBehaviour
                 .SetEase(Ease.OutBack)
                 .OnComplete(() => titleImages[2].transform.DOScale(1f, duration / 2));
             titleImages[2].transform.DOShakePosition(shakeDuration, new Vector3(shakeStrength, 0, 0), 10, 90, false, true);
-            AudioManager.Instance.PlaySFX("TalGhostWalking");
+            AudioManager.Instance.PlaySFX("Boom");
         })
         .AppendInterval(1f) // 1초 동안 유지
         .AppendCallback(() => 
@@ -67,7 +67,7 @@ public class ending : MonoBehaviour
                 .SetEase(Ease.OutBack)
                 .OnComplete(() => titleImages[3].transform.DOScale(1f, duration / 2));
             titleImages[3].transform.DOShakePosition(shakeDuration, new Vector3(shakeStrength, 0, 0), 10, 90, false, true);
-            AudioManager.Instance.PlaySFX("TalGhostWalking");
+            AudioManager.Instance.PlaySFX("Boom");
         })
         .AppendInterval(1f);
 
