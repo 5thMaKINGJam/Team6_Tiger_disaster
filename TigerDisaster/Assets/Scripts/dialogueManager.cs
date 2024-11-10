@@ -88,7 +88,11 @@ public class dialogueManager : MonoBehaviour
         foreach (char letter in dialogue.ToCharArray())
         {
             dialogueText.text += letter;     // 텍스트에 글자 추가
-            yield return new WaitForSeconds(0.05f); // 글자 타이핑 속도 조절
+            if (letter != ' ')               // 현재 글자가 빈칸이 아닌 경우에만 소리 재생
+            {
+                AudioManager.Instance.PlaySFX("WordSound");
+            }
+            yield return new WaitForSeconds(0.1f); // 글자 타이핑 속도 조절
         }
 
         isTyping = false;                    // 타이핑 상태 종료
