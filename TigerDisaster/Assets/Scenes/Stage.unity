@@ -534,7 +534,6 @@ GameObject:
   - component: {fileID: 389022605}
   - component: {fileID: 389022604}
   - component: {fileID: 389022603}
-  - component: {fileID: 389022606}
   - component: {fileID: 389022607}
   m_Layer: 0
   m_Name: "\uC774\uC0C1\uD55C\uC0AC\uC2B4"
@@ -630,18 +629,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &389022606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389022602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 140c6fd6b1d043a4aa9e6f8e2a8debeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &389022607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,8 +1492,9 @@ MonoBehaviour:
   - {fileID: 1953734083}
   dialogueText: {fileID: 1592767557}
   monsterSprite:
-  - {fileID: 21300000, guid: b1b2a2e42333dc145a019124eeff383a, type: 3}
-  - {fileID: 21300000, guid: 0f30811997238d14fa8151b7f1c6d9a0, type: 3}
+
+  - {fileID: 21300000, guid: b32b29a01aed7ba46beaee1924c84515, type: 3}
+
 --- !u!4 &583891411
 Transform:
   m_ObjectHideFlags: 0
@@ -1824,7 +1812,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bdd62bea45c833f438c31d09525715a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a88957444fb04742adb341e57bebda7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2214,7 +2202,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bdd62bea45c833f438c31d09525715a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a88957444fb04742adb341e57bebda7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
