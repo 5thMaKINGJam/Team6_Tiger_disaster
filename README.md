@@ -6,10 +6,10 @@
 <summary> 웹 플레이 및 다운로드 링크 </summary>
 <div markdown="1">    
   
- https://hyunmin0809.itch.io/6teamtigerdisaster
+ https://hyunmin0809.itch.io/6teamtigerdisaster (웹)
 
  
- https://drive.google.com/drive/folders/1-HyNZKNUXCPx-5ngwIukYTmgZ0mrfWBt?usp=drive_link
+ https://drive.google.com/drive/folders/1-HyNZKNUXCPx-5ngwIukYTmgZ0mrfWBt?usp=drive_link (안드로이드/PC)
   
 </div>
 </details>
